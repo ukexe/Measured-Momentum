@@ -4,6 +4,7 @@ import type { ReactNode } from "react";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { StatusRail } from "@/components/layout/status-rail";
+import { StageBackdrop } from "@/components/three/stage-backdrop.client";
 import { siteConfig } from "@/content/site";
 import {
   createPageMetadata,
@@ -42,8 +43,8 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  colorScheme: "light",
-  themeColor: "#fff8ed",
+  colorScheme: "dark",
+  themeColor: "#0a0c13",
   width: "device-width",
   initialScale: 1,
 };
@@ -57,6 +58,7 @@ export default function RootLayout({
         <a className="skip-link" href="#main-content">
           Skip to main content
         </a>
+        <StageBackdrop />
         <StatusRail />
         <SiteHeader />
         <main className="site-main" id="main-content" tabIndex={-1}>

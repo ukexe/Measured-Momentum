@@ -14,6 +14,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container site-header__inner">
         <Link className="site-lockup" href={routes.home.href} prefetch={false}>
+          <span className="site-lockup__mark" aria-hidden="true" />
           <span className="site-lockup__descriptor">
             {siteConfig.descriptor}
           </span>
@@ -83,6 +84,7 @@ export function SiteHeader() {
           utilityItems={policyNavigation}
         />
       </div>
+      <span className="site-header__progress" aria-hidden="true" />
     </header>
   );
 }

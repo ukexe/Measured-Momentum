@@ -1,0 +1,123 @@
+.backdrop {
+  position: fixed;
+  z-index: 0;
+  inset: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.6s var(--ease-enter, ease-out);
+  contain: strict;
+}
+
+.backdrop[data-live="true"] {
+  opacity: 1;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      ellipse 120% 90% at 50% 38%,
+      transparent 0 42%,
+      rgb(5 6 10 / 0.6) 100%
+    ),
+    linear-gradient(180deg, rgb(5 6 10 / 0) 55%, rgb(5 6 10 / 0.45) 100%);
+}
+
+.scrim::after {
+  position: absolute;
+  inset: 0;
+  background: rgb(5 6 10 / 0.5);
+  content: "";
+  opacity: 0;
+}
+
+.backdrop[data-variant="inner"] .scrim::after {
+  opacity: 0.72;
+}
+
+.motionToggle {
+  position: fixed;
+  z-index: 60;
+  bottom: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28));
+  border-radius: 999px;
+  background: var(--glass-strong, rgb(10 12 19 / 0.84));
+  backdrop-filter: var(--glass-blur, blur(18px));
+  color: var(--fg-strong, #f7f1e6);
+  cursor: pointer;
+  font-family: var(
+    --font-mono,
+    ui-monospace,
+    "Cascadia Code",
+    Menlo,
+    Consolas,
+    monospace
+  );
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.motionToggle:hover {
+  border-color: var(--accent-count, #d9f257);
+  box-shadow: 0 0 1.5rem rgb(217 242 87 / 0.25);
+  color: var(--accent-count, #d9f257);
+}
+
+.motionToggle:focus-visible {
+  outline: 3px solid var(--accent-count, #d9f257);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: scroll()) {
+    .backdrop[data-variant="home"] .scrim::after {
+      animation: scrim-deepen linear both;
+      animation-range: 0 120vh;
+      animation-timeline: scroll(root);
+    }
+  }
+}
+
+@media (forced-colors: active) {
+  .backdrop {
+    display: none;
+  }
+
+  .motionToggle {
+    border: 2px solid ButtonText;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+}
+
+@media print {
+  .backdrop,
+  .motionToggle {
+    display: none;
+  }
+}
+
+@keyframes scrim-deepen {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.62;
+  }
+}

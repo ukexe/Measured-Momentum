@@ -24,10 +24,11 @@ configured.
 - Cloudflare Workers Static Assets serves `out/`. Only `/api/*` is configured
   Worker-first; every non-API request reaching the Worker is delegated to
   `env.ASSETS.fetch`.
-- Saath Rekha renders an immediate semantic SVG fallback. An eligible browser
-  lazily loads the Three/R3F scene near the viewport; reduced motion,
-  Save-Data, unsupported WebGL2, context loss and load failure retain the
-  fallback. Rendering pauses offscreen, while hidden or by user choice.
+- Saath Rekha renders an immediate SVG/CSS presentation. An eligible browser
+  loads the global Three/R3F stage only after a post-load grace period and an
+  idle opportunity; reduced motion, Save-Data, unsupported WebGL2, context
+  loss and load failure retain the static presentation. Rendering is
+  frame-capped and pauses while hidden or by user choice.
 - `GET /api/enquiries/status` always returns a `200` capability document.
   Incomplete configuration is represented by `available: false`.
 - `POST /api/enquiries` fails closed with

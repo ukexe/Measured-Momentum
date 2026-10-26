@@ -1,5 +1,7 @@
 .page {
+  position: relative;
   overflow: clip;
+  color: var(--fg);
 }
 
 .hero {
@@ -8,6 +10,7 @@
   gap: clamp(var(--space-8), 7vw, var(--space-24));
   align-items: end;
   padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+  perspective: 70rem;
 }
 
 .heroCopy {
@@ -17,19 +20,33 @@
 .heroStatus {
   position: relative;
   padding: var(--space-8);
-  border: var(--border-strong) solid var(--color-ink);
-  border-radius: var(--radius-card);
-  background: var(--color-count);
-  box-shadow: var(--shadow-raised);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      120% 80% at 100% 0%,
+      rgb(217 242 87 / 0.12),
+      transparent 60%
+    ),
+    var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  color: var(--fg);
+  transform: rotateY(-7deg) rotateX(3deg);
+  transform-origin: right center;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .heroStatus::before {
   position: absolute;
-  width: 5rem;
-  height: var(--border-strong);
-  top: var(--space-8);
-  right: calc(100% - var(--space-4));
-  background: var(--color-ink);
+  top: -1px;
+  right: var(--space-8);
+  left: var(--space-8);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient-signature);
+  box-shadow: 0 0 1.25rem rgb(217 242 87 / 0.45);
   content: "";
 }
 
@@ -37,19 +54,22 @@
 .kicker,
 .cardLabel {
   margin-bottom: var(--space-3);
-  color: var(--color-beat);
-  font-size: var(--text-small);
-  font-weight: 750;
-  letter-spacing: 0.075em;
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
 .measureLabel {
-  color: var(--color-ink);
+  color: var(--accent-brass);
 }
 
 .heroStatusTitle {
   margin-bottom: var(--space-3);
+  color: var(--fg-strong);
   font-family: var(--font-display);
   font-size: var(--text-h3);
   font-weight: 720;
@@ -58,46 +78,93 @@
 
 .heroStatus p:last-child {
   margin-bottom: 0;
+  color: var(--fg);
+}
+
+.statusSection,
+.intentSection,
+.valuesSection {
+  position: relative;
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(5 6 10 / 0.72) 14%,
+    rgb(5 6 10 / 0.72) 86%,
+    transparent
+  );
 }
 
 .statusSection {
-  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
   scroll-margin-top: var(--space-8);
-  background: var(--color-ink);
-  color: var(--color-paper);
 }
 
 .sectionHeading {
   max-width: var(--measure-copy);
 }
 
-.sectionHeading > p:last-child {
-  color: var(--color-text-muted);
-  font-size: var(--text-lead);
+.sectionHeading h2 {
+  color: var(--fg-strong);
 }
 
-.statusSection .sectionHeading > p:last-child {
-  color: var(--color-surface-muted);
+.sectionHeading > p:last-child:not(.kicker) {
+  color: var(--fg-muted);
+  font-size: var(--text-lead);
 }
 
 .statusLedger {
   margin: var(--space-12) 0 0;
-  border-top: var(--border-thin) solid
-    color-mix(in srgb, var(--color-paper) 40%, transparent);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
 }
 
 .statusRow {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(10rem, 0.65fr) minmax(0, 1.35fr);
   gap: var(--space-6);
-  padding-block: var(--space-6);
-  border-bottom: var(--border-thin) solid
-    color-mix(in srgb, var(--color-paper) 40%, transparent);
+  padding: var(--space-6) clamp(var(--space-4), 3vw, var(--space-8));
+  border-bottom: 1px solid var(--hairline);
+  transition: background-color 0.3s ease;
+}
+
+.statusRow:last-child {
+  border-bottom: 0;
+}
+
+.statusRow::before {
+  position: absolute;
+  top: var(--space-4);
+  bottom: var(--space-4);
+  left: 0;
+  width: 2px;
+  background: var(--accent-count);
+  box-shadow: 0 0 0.75rem var(--accent-count);
+  content: "";
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.statusRow:hover {
+  background: rgb(247 241 230 / 0.035);
+}
+
+.statusRow:hover::before {
+  opacity: 1;
 }
 
 .statusRow dt {
-  color: var(--color-count);
-  font-weight: 750;
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 .statusRow dd {
@@ -108,17 +175,18 @@
 }
 
 .statusRow dd strong {
-  color: var(--color-paper);
+  color: var(--fg-strong);
 }
 
 .statusRow dd span {
-  color: var(--color-surface-muted);
+  color: var(--fg-muted);
 }
 
 .rationaleSection,
 .horizonSection,
 .scopeSection,
 .sequenceSection {
+  position: relative;
   padding-block: clamp(var(--space-16), 8vw, var(--space-24));
 }
 
@@ -126,11 +194,32 @@
   display: grid;
   grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr);
   gap: clamp(var(--space-8), 7vw, var(--space-24));
+  align-items: start;
+}
+
+.rationaleSection > div:first-child {
+  position: sticky;
+  top: clamp(5rem, 12vh, 8rem);
+}
+
+.rationaleSection h2 {
+  color: var(--fg-strong);
 }
 
 .prose {
   max-width: var(--measure-copy);
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--fg);
   font-size: var(--text-lead);
+}
+
+.prose p:first-child::first-letter {
+  color: var(--accent-count);
 }
 
 .prose p:last-child {
@@ -138,31 +227,82 @@
 }
 
 .horizonSection {
-  border-top: var(--border-strong) solid var(--color-ink);
+  border-top: 1px solid var(--hairline);
 }
 
 .horizonGrid,
 .intentGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+  gap: var(--space-6);
   margin-top: var(--space-12);
+  perspective: 80rem;
+}
+
+.horizonCard,
+.intentCard {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  color: var(--fg);
 }
 
 .horizonCard {
   min-height: 18rem;
-  padding: clamp(var(--space-6), 4vw, var(--space-12));
-  border-radius: var(--radius-card);
+}
+
+.horizonCard::after,
+.intentCard::after {
+  position: absolute;
+  inset: auto -20% -40% auto;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--card-glow, rgb(69 214 204 / 0.18)),
+    transparent 65%
+  );
+  content: "";
+  pointer-events: none;
 }
 
 .horizonCard:first-child {
-  border: var(--border-strong) solid var(--color-balance);
-  background: var(--color-surface);
+  --card-glow: rgb(69 214 204 / 0.2);
+
+  border-color: rgb(69 214 204 / 0.38);
+}
+
+.horizonCard:first-child .cardLabel {
+  color: var(--accent-balance);
 }
 
 .horizonCard:last-child {
-  border: var(--border-strong) solid var(--color-step);
-  background: var(--color-info-surface);
+  --card-glow: rgb(154 170 255 / 0.2);
+
+  border-color: rgb(154 170 255 / 0.38);
+  border-style: dashed;
+}
+
+.horizonCard:last-child .cardLabel {
+  color: var(--accent-step);
+}
+
+.horizonCard h3,
+.intentCard h3 {
+  color: var(--fg-strong);
+}
+
+.horizonCard > *,
+.intentCard > * {
+  position: relative;
+  z-index: 1;
 }
 
 .horizonCard p:last-child,
@@ -171,21 +311,27 @@
   margin-bottom: 0;
 }
 
-.intentSection {
-  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
-  background: var(--color-surface-muted);
+.intentCard::before {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: var(--gradient-signature);
+  content: "";
 }
 
-.intentCard {
-  padding: clamp(var(--space-6), 4vw, var(--space-12));
-  border-top: 0.4rem solid var(--color-beat);
-  background: var(--color-surface);
-  box-shadow: 0 0.25rem 1rem
-    color-mix(in srgb, var(--color-ink) 8%, transparent);
+.intentCard:first-child .cardLabel {
+  color: var(--accent-beat);
 }
 
 .intentCard:last-child {
-  border-color: var(--color-balance);
+  --card-glow: rgb(255 107 134 / 0.16);
+}
+
+.intentCard:last-child .cardLabel {
+  color: var(--accent-balance);
 }
 
 .scopeGrid {
@@ -202,9 +348,19 @@
   grid-template-columns: auto 1fr;
   gap: var(--space-4);
   padding: var(--space-6);
-  border: var(--border-thin) solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.scopeGrid li:hover {
+  border-color: rgb(217 242 87 / 0.4);
+  box-shadow: 0 1.25rem 3rem -1.75rem rgb(217 242 87 / 0.45);
 }
 
 .scopeGrid li:last-child {
@@ -212,121 +368,268 @@
 }
 
 .scopeGrid h3 {
+  color: var(--fg-strong);
   font-size: clamp(1.25rem, 2vw, 1.65rem);
 }
 
 .scopeGrid p {
   margin-bottom: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
 }
 
 .scopeIndex {
   display: grid;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 3rem;
+  height: 3rem;
   place-items: center;
+  border: 1px solid rgb(217 242 87 / 0.5);
   border-radius: 50%;
-  background: var(--color-count);
-  color: var(--color-ink);
-  font-weight: 800;
+  background: rgb(217 242 87 / 0.08);
+  box-shadow: inset 0 0 1rem rgb(217 242 87 / 0.12);
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
-.valuesSection {
-  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
-  background: var(--color-balance);
-  color: var(--color-surface);
-}
-
 .valuesSection .kicker {
-  color: var(--color-count);
+  color: var(--accent-balance);
 }
 
 .valuesGrid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0;
+  gap: 1px;
   margin-top: var(--space-12);
-  border-top: var(--border-thin) solid
-    color-mix(in srgb, var(--color-surface) 55%, transparent);
-  border-left: var(--border-thin) solid
-    color-mix(in srgb, var(--color-surface) 55%, transparent);
+  overflow: hidden;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--hairline);
 }
 
 .valuesGrid article {
-  padding: var(--space-6);
-  border-right: var(--border-thin) solid
-    color-mix(in srgb, var(--color-surface) 55%, transparent);
-  border-bottom: var(--border-thin) solid
-    color-mix(in srgb, var(--color-surface) 55%, transparent);
+  position: relative;
+  padding: var(--space-8) var(--space-6);
+  background: var(--stage-1);
+  transition: background-color 0.3s ease;
+}
+
+.valuesGrid article::before {
+  position: absolute;
+  top: 0;
+  left: var(--space-6);
+  width: 2.5rem;
+  height: 2px;
+  background: var(--accent-balance);
+  box-shadow: 0 0 0.75rem var(--accent-balance);
+  content: "";
+}
+
+.valuesGrid article:hover {
+  background: var(--stage-2);
 }
 
 .valuesGrid h3 {
+  color: var(--fg-strong);
   font-size: clamp(1.25rem, 2vw, 1.6rem);
 }
 
 .valuesGrid p {
   margin-bottom: 0;
-  color: var(--color-paper);
+  color: var(--fg-muted);
 }
 
 .sequence {
+  position: relative;
   margin: var(--space-12) 0 0;
   padding: 0;
   list-style: none;
 }
 
-.sequence li {
-  display: grid;
-  grid-template-columns: minmax(4rem, 0.25fr) minmax(0, 1.75fr);
-  gap: var(--space-6);
-  padding-block: var(--space-6);
-  border-top: var(--border-thin) solid var(--color-line);
+.sequence::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(2rem - 1px);
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--accent-beat),
+    var(--accent-brass),
+    var(--accent-count)
+  );
+  content: "";
+  opacity: 0.55;
 }
 
-.sequence li:last-child {
-  border-bottom: var(--border-thin) solid var(--color-line);
+.sequence li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+}
+
+.sequence li > div {
+  padding: var(--space-6);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .sequenceNumber {
-  color: var(--color-beat);
-  font-family: var(--font-display);
-  font-size: var(--text-h3);
-  font-weight: 750;
+  position: relative;
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  background: var(--stage-1);
+  box-shadow: 0 0 1.5rem rgb(217 242 87 / 0.2);
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
 
 .sequence h3 {
   margin-bottom: var(--space-2);
+  color: var(--fg-strong);
 }
 
 .sequence p {
   max-width: var(--measure-copy);
   margin-bottom: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
 }
 
 .transparencySection {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
   gap: var(--space-8);
   align-items: center;
   margin-bottom: clamp(var(--space-16), 8vw, var(--space-24));
   padding: clamp(var(--space-8), 6vw, var(--space-16));
-  border: var(--border-strong) solid var(--color-ink);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-raised);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      90% 120% at 0% 100%,
+      rgb(255 107 134 / 0.14),
+      transparent 60%
+    ),
+    var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+}
+
+.transparencySection::before {
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--gradient-signature);
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.transparencySection h2 {
+  color: var(--fg-strong);
 }
 
 .transparencySection p:not(.kicker) {
   max-width: var(--measure-copy);
   margin-bottom: 0;
+  color: var(--fg);
 }
 
 .transparencyActions {
   display: grid;
   gap: var(--space-3);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: perspective(60rem) translateY(2.5rem) rotateX(9deg);
+  }
+}
+
+@keyframes tilt-in {
+  from {
+    opacity: 0;
+    transform: perspective(70rem) rotateY(var(--tilt-from, -14deg))
+      translateZ(-4rem);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .heroStatus:hover {
+    transform: rotateY(0) rotateX(0) translateZ(1rem);
+  }
+
+  .horizonCard,
+  .intentCard,
+  .scopeGrid li,
+  .sequence li > div {
+    transition:
+      translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .horizonCard:hover,
+  .intentCard:hover,
+  .scopeGrid li:hover,
+  .sequence li:hover > div {
+    translate: 0 -0.35rem;
+    border-color: var(--hairline-strong);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .statusRow,
+    .scopeGrid li,
+    .sequence li,
+    .valuesGrid article,
+    .prose,
+    .transparencySection {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+
+    .horizonCard,
+    .intentCard {
+      animation: tilt-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    .horizonCard:last-child,
+    .intentCard:last-child {
+      --tilt-from: 14deg;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroStatus {
+    transform: none;
+    transition: none;
+  }
 }
 
 @media (max-width: 58rem) {
@@ -336,8 +639,12 @@
     grid-template-columns: 1fr;
   }
 
-  .heroStatus::before {
-    display: none;
+  .heroStatus {
+    transform: none;
+  }
+
+  .rationaleSection > div:first-child {
+    position: static;
   }
 
   .valuesGrid {
@@ -359,22 +666,61 @@
     grid-column: auto;
   }
 
+  .statusRow,
   .statusRow dd {
     gap: var(--space-2);
   }
 
+  .sequence::before {
+    left: calc(1.5rem - 1px);
+  }
+
   .sequence li {
-    grid-template-columns: 3rem 1fr;
+    grid-template-columns: 3rem minmax(0, 1fr);
     gap: var(--space-3);
+  }
+
+  .sequenceNumber {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.8125rem;
+  }
+
+  .sequence li > div,
+  .scopeGrid li {
+    padding: var(--space-4);
   }
 }
 
 @media (forced-colors: active) {
   .heroStatus,
+  .statusLedger,
+  .prose,
   .horizonCard,
   .intentCard,
   .scopeGrid li,
+  .valuesGrid,
+  .sequence li > div,
   .transparencySection {
     border: var(--border-strong) solid CanvasText;
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .heroStatus::before,
+  .statusRow::before,
+  .horizonCard::after,
+  .intentCard::after,
+  .intentCard::before,
+  .valuesGrid article::before,
+  .sequence::before,
+  .transparencySection::before {
+    display: none;
+  }
+
+  .scopeIndex,
+  .sequenceNumber {
+    border-color: CanvasText;
   }
 }

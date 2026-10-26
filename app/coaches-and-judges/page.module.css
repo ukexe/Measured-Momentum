@@ -1,5 +1,7 @@
 .page {
+  position: relative;
   overflow: clip;
+  color: var(--fg);
 }
 
 .hero {
@@ -8,44 +10,68 @@
   gap: clamp(var(--space-8), 7vw, var(--space-24));
   align-items: center;
   padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+  perspective: 70rem;
 }
 
 .heroBoundary {
+  position: relative;
   display: grid;
   grid-template-columns: auto 1fr;
   gap: var(--space-6);
   align-items: center;
+  overflow: hidden;
   padding: var(--space-8);
-  border: var(--border-strong) solid var(--color-ink);
-  border-radius: var(--radius-card);
-  background: var(--color-info-surface);
+  border: 1px solid rgb(154 170 255 / 0.42);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      80% 90% at 0% 50%,
+      rgb(154 170 255 / 0.18),
+      transparent 65%
+    ),
+    var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  color: var(--fg);
+  transform: rotateY(-7deg) rotateX(3deg);
+  transform-origin: right center;
 }
 
 .heroBoundary > span {
-  color: var(--color-step);
+  color: transparent;
   font-family: var(--font-display);
   font-size: clamp(5rem, 11vw, 8rem);
   font-weight: 800;
   line-height: 0.8;
+  text-shadow: 0 0 2.5rem rgb(154 170 255 / 0.45);
+  -webkit-text-stroke: 1.5px var(--accent-step);
 }
 
 .heroBoundary p:last-child {
   margin-bottom: 0;
+  color: var(--fg-strong);
   font-weight: 650;
 }
 
 .kicker,
 .inverseKicker {
   margin-bottom: var(--space-3);
-  color: var(--color-beat);
-  font-size: var(--text-small);
-  font-weight: 750;
-  letter-spacing: 0.075em;
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
   text-transform: uppercase;
 }
 
+.heroBoundary .kicker {
+  color: var(--accent-step);
+}
+
 .inverseKicker {
-  color: var(--color-count);
+  color: var(--accent-balance);
 }
 
 .currentState {
@@ -56,38 +82,66 @@
   max-width: var(--measure-copy);
 }
 
-.sectionHeading > p:last-child,
-.verificationIntro > p:last-child {
-  color: var(--color-text-muted);
+.sectionHeading h2,
+.verificationIntro h2 {
+  color: var(--fg-strong);
+}
+
+.sectionHeading > p:last-child:not(.kicker, .inverseKicker),
+.verificationIntro > p:last-child:not(.kicker) {
+  color: var(--fg-muted);
   font-size: var(--text-lead);
 }
 
-.rolesSection {
+.rolesSection,
+.verificationSection {
+  position: relative;
   padding-block: clamp(var(--space-16), 9vw, var(--space-24));
-  background: var(--color-ink);
-  color: var(--color-paper);
-}
-
-.rolesSection .sectionHeading > p:last-child {
-  color: var(--color-surface-muted);
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(5 6 10 / 0.72) 14%,
+    rgb(5 6 10 / 0.72) 86%,
+    transparent
+  );
 }
 
 .roleGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--space-4);
+  gap: var(--space-6);
   margin-top: var(--space-12);
+  perspective: 80rem;
 }
 
 .roleGrid article {
+  --role-accent: var(--accent-balance);
+
+  position: relative;
   min-height: 22rem;
+  overflow: hidden;
   padding: clamp(var(--space-6), 5vw, var(--space-12));
-  border: var(--border-thin) solid
-    color-mix(in srgb, var(--color-paper) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--role-accent) 40%, transparent);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      90% 70% at 100% 0%,
+      color-mix(in srgb, var(--role-accent) 14%, transparent),
+      transparent 60%
+    ),
+    var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  color: var(--fg);
 }
 
 .roleGrid article:last-child {
-  border-color: var(--color-count);
+  --role-accent: var(--accent-count);
+}
+
+.roleGrid h3 {
+  color: var(--fg-strong);
 }
 
 .roleMarker {
@@ -96,29 +150,33 @@
   justify-content: space-between;
   gap: var(--space-4);
   margin-bottom: var(--space-12);
+  padding-bottom: var(--space-4);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .roleMarker span {
-  color: var(--color-count);
+  color: transparent;
   font-family: var(--font-display);
-  font-size: var(--text-h2);
+  font-size: clamp(3rem, 6vw, 4.5rem);
   font-weight: 800;
   line-height: 1;
+  -webkit-text-stroke: 1px var(--role-accent);
 }
 
 .roleMarker p {
   margin: 0;
-  color: var(--color-count);
-  font-size: var(--text-small);
-  font-weight: 750;
-  letter-spacing: 0.075em;
+  color: var(--role-accent);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 .roleGrid article > p:last-child {
   max-width: 54ch;
   margin-bottom: 0;
-  color: var(--color-surface-muted);
+  color: var(--fg-muted);
 }
 
 .developmentSection,
@@ -127,40 +185,69 @@
 }
 
 .developmentList {
+  position: relative;
   margin: var(--space-12) 0 0;
   padding: 0;
-  border-top: var(--border-strong) solid var(--color-ink);
   list-style: none;
 }
 
+.developmentList::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(2rem - 1px);
+  width: 2px;
+  background: linear-gradient(
+    180deg,
+    var(--accent-beat),
+    var(--accent-brass),
+    var(--accent-count)
+  );
+  content: "";
+  opacity: 0.55;
+}
+
 .developmentList li {
+  position: relative;
   display: grid;
-  grid-template-columns: minmax(4rem, 0.25fr) minmax(0, 1.75fr);
+  grid-template-columns: 4rem minmax(0, 1fr);
   gap: var(--space-6);
-  padding-block: var(--space-6);
-  border-bottom: var(--border-thin) solid var(--color-line);
+  padding-block: var(--space-4);
+}
+
+.developmentList li > div {
+  padding: var(--space-6);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
 }
 
 .developmentList li > span {
-  color: var(--color-beat);
-  font-family: var(--font-display);
-  font-size: var(--text-h3);
-  font-weight: 750;
+  display: grid;
+  width: 4rem;
+  height: 4rem;
+  place-items: center;
+  border: 1px solid var(--hairline-strong);
+  border-radius: 50%;
+  background: var(--stage-1);
+  box-shadow: 0 0 1.5rem rgb(255 107 134 / 0.25);
+  color: var(--accent-beat);
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .developmentList h3 {
   margin-bottom: var(--space-2);
+  color: var(--fg-strong);
 }
 
 .developmentList p {
   max-width: var(--measure-copy);
   margin-bottom: 0;
-  color: var(--color-text-muted);
-}
-
-.verificationSection {
-  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
-  background: var(--color-surface-muted);
+  color: var(--fg-muted);
 }
 
 .verificationGrid {
@@ -170,6 +257,8 @@
 }
 
 .verificationIntro {
+  position: sticky;
+  top: clamp(5rem, 12vh, 8rem);
   align-self: start;
 }
 
@@ -186,9 +275,12 @@
   grid-template-columns: auto 1fr;
   gap: var(--space-4);
   padding: var(--space-6);
-  border: var(--border-thin) solid var(--color-line);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--fg);
 }
 
 .verificationSteps li > span {
@@ -196,20 +288,24 @@
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
+  border: 1px solid rgb(217 242 87 / 0.55);
   border-radius: 50%;
-  background: var(--color-count);
-  color: var(--color-ink);
-  font-weight: 800;
+  background: rgb(217 242 87 / 0.08);
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
 }
 
 .verificationSteps h3 {
   margin-bottom: var(--space-2);
+  color: var(--fg-strong);
   font-size: clamp(1.2rem, 2vw, 1.5rem);
 }
 
 .verificationSteps p {
   margin-bottom: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
 }
 
 .safeguardGrid {
@@ -220,36 +316,84 @@
 }
 
 .safeguardGrid article {
+  position: relative;
   padding: var(--space-8);
-  border-top: 0.4rem solid var(--color-balance);
-  background: var(--color-surface);
-  box-shadow: 0 0.25rem 1rem
-    color-mix(in srgb, var(--color-ink) 7%, transparent);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  color: var(--fg);
+}
+
+.safeguardGrid article::before {
+  position: absolute;
+  top: 0;
+  left: var(--space-8);
+  width: 3rem;
+  height: 2px;
+  background: var(--accent-balance);
+  box-shadow: 0 0 0.85rem var(--accent-balance);
+  content: "";
+}
+
+.safeguardGrid article:nth-child(3n + 2) {
+  translate: 0 var(--space-6);
+}
+
+.safeguardGrid h3 {
+  color: var(--fg-strong);
 }
 
 .safeguardGrid p {
   margin-bottom: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
 }
 
 .contributionSection {
+  position: relative;
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
   gap: var(--space-8);
   align-items: center;
   margin-bottom: clamp(var(--space-16), 9vw, var(--space-24));
   padding: clamp(var(--space-8), 6vw, var(--space-16));
-  border-radius: var(--radius-card);
-  background: var(--color-count);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      90% 120% at 100% 0%,
+      rgb(217 242 87 / 0.14),
+      transparent 60%
+    ),
+    var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+}
+
+.contributionSection::before {
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: var(--gradient-signature);
+  content: "";
+  pointer-events: none;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.contributionSection h2 {
+  color: var(--fg-strong);
 }
 
 .contributionSection p:not(.kicker) {
   max-width: var(--measure-copy);
   margin-bottom: 0;
-}
-
-.contributionSection .kicker {
-  color: var(--color-ink);
+  color: var(--fg);
 }
 
 .actions {
@@ -257,11 +401,100 @@
   gap: var(--space-3);
 }
 
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: perspective(60rem) translateY(2.5rem) rotateX(9deg);
+  }
+}
+
+@keyframes card-swing {
+  from {
+    opacity: 0;
+    transform: rotateY(var(--swing-from, -14deg)) translateZ(-4rem);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .heroBoundary {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .heroBoundary:hover {
+    transform: rotateY(0) rotateX(0) translateZ(1rem);
+  }
+
+  .roleGrid article,
+  .verificationSteps li,
+  .developmentList li > div {
+    transition:
+      translate 0.45s cubic-bezier(0.2, 0.7, 0.2, 1),
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .roleGrid article:hover,
+  .verificationSteps li:hover,
+  .developmentList li:hover > div {
+    translate: 0 -0.35rem;
+    border-color: var(--hairline-strong);
+    box-shadow: 0 1.5rem 3rem -1.75rem var(--role-accent, var(--accent-count));
+  }
+
+  .safeguardGrid article {
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .safeguardGrid article:hover {
+    border-color: rgb(69 214 204 / 0.5);
+    box-shadow: 0 1.5rem 3rem -1.75rem rgb(69 214 204 / 0.5);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .roleGrid article {
+      animation: card-swing linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 35%;
+    }
+
+    .roleGrid article:last-child {
+      --swing-from: 14deg;
+    }
+
+    .developmentList li,
+    .verificationSteps li,
+    .safeguardGrid article,
+    .contributionSection {
+      animation: rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .heroBoundary {
+    transform: none;
+  }
+}
+
 @media (max-width: 54rem) {
   .hero,
   .verificationGrid,
   .contributionSection {
     grid-template-columns: 1fr;
+  }
+
+  .heroBoundary {
+    transform: none;
+  }
+
+  .verificationIntro {
+    position: static;
   }
 }
 
@@ -271,18 +504,63 @@
     grid-template-columns: 1fr;
   }
 
+  .safeguardGrid article:nth-child(3n + 2) {
+    translate: none;
+  }
+
+  .heroBoundary {
+    gap: var(--space-4);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .roleGrid article {
+    min-height: auto;
+  }
+
+  .developmentList::before {
+    left: calc(1.5rem - 1px);
+  }
+
   .developmentList li {
-    grid-template-columns: 3rem 1fr;
+    grid-template-columns: 3rem minmax(0, 1fr);
     gap: var(--space-3);
+  }
+
+  .developmentList li > span {
+    width: 3rem;
+    height: 3rem;
+    font-size: 0.8125rem;
+  }
+
+  .developmentList li > div,
+  .verificationSteps li {
+    padding: var(--space-4);
   }
 }
 
 @media (forced-colors: active) {
   .heroBoundary,
   .roleGrid article,
+  .developmentList li > div,
   .verificationSteps li,
   .safeguardGrid article,
   .contributionSection {
     border: var(--border-strong) solid CanvasText;
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .developmentList::before,
+  .safeguardGrid article::before,
+  .contributionSection::before {
+    display: none;
+  }
+
+  .heroBoundary > span,
+  .roleMarker span {
+    color: CanvasText;
+    text-shadow: none;
+    -webkit-text-stroke: 0;
   }
 }

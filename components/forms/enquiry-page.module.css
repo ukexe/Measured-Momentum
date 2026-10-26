@@ -1,5 +1,7 @@
 .page {
+  position: relative;
   padding-block: clamp(3rem, 8vw, 7rem);
+  color: var(--fg);
 }
 
 .intro {
@@ -8,16 +10,41 @@
   gap: clamp(2rem, 6vw, 5rem);
   align-items: start;
   margin-bottom: clamp(3rem, 7vw, 6rem);
+  perspective: 70rem;
 }
 
 .notice {
-  padding: var(--space-6);
-  border-top: 0.4rem solid var(--color-beat);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-raised);
+  position: relative;
+  padding: var(--space-8) var(--space-6) var(--space-6);
+  border: 1px solid rgb(255 107 134 / 0.38);
+  border-radius: var(--radius-panel);
+  background:
+    radial-gradient(
+      100% 80% at 100% 0%,
+      rgb(255 107 134 / 0.14),
+      transparent 60%
+    ),
+    var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  transform: rotateY(-6deg);
+  transform-origin: right center;
+}
+
+.notice::before {
+  position: absolute;
+  top: -1px;
+  right: var(--space-6);
+  left: var(--space-6);
+  height: 2px;
+  background: var(--accent-beat);
+  box-shadow: 0 0 1rem rgb(255 107 134 / 0.6);
+  content: "";
 }
 
 .notice h2 {
+  color: var(--fg-strong);
   font-size: var(--text-h3);
 }
 
@@ -30,23 +57,70 @@
   gap: var(--space-3);
   margin: 0;
   padding-left: 1.25rem;
+  color: var(--fg);
+}
+
+.boundaries li::marker {
+  color: var(--accent-beat);
 }
 
 .formArea {
+  position: relative;
+  isolation: isolate;
   padding-block: var(--space-8);
+}
+
+.formArea::before {
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 50%;
+  width: min(60rem, 100%);
+  height: 70%;
+  background: radial-gradient(
+    50% 50% at 50% 30%,
+    rgb(217 242 87 / 0.07),
+    transparent 70%
+  );
+  content: "";
+  pointer-events: none;
+  translate: -50% 0;
 }
 
 .noScript {
   max-width: 52rem;
   margin: var(--space-6) auto 0;
-  padding: var(--space-4);
-  border-left: 0.4rem solid var(--color-warning);
-  background: var(--color-warning-surface);
+  padding: var(--space-4) var(--space-6);
+  border: 1px solid rgb(217 184 120 / 0.45);
+  border-left: 3px solid var(--accent-brass);
+  border-radius: var(--radius-control);
+  background: var(--glass-strong);
+  color: var(--fg-strong);
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .notice {
+    transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .notice:hover {
+    transform: rotateY(0) translateZ(1rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notice {
+    transform: none;
+  }
 }
 
 @media (max-width: 52rem) {
   .intro {
     grid-template-columns: 1fr;
+  }
+
+  .notice {
+    transform: none;
   }
 }
 
@@ -54,5 +128,13 @@
   .notice,
   .noScript {
     border: var(--border-strong) solid CanvasText;
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .notice::before,
+  .formArea::before {
+    display: none;
   }
 }

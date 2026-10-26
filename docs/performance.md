@@ -10,8 +10,8 @@
 - The 0.1 CLS target was met in every retained sample; each recorded `0`.
 - INP cannot be measured from a page-load lab run and is not claimed.
 - The repeatable five-second long-task proxy had medians between `292 ms` and
-  `558 ms`. It is not INP or Lighthouse TBT, but it means the 200 ms
-  interaction target is not yet evidenced.
+  `558 ms`; the visual-revamp homepage median was `327 ms`. It is not INP or
+  Lighthouse TBT, so the 200 ms interaction target is not claimed.
 - Initial transfer and request counts remained below the project budgets in
   all post-remediation samples.
 
@@ -44,8 +44,27 @@ The exact final samples, ISO UTC timestamps, Chromium `156.0.8078.4`, Node
 runtime and profile are retained in:
 
 - [`evidence/performance/2026-10-26-home.json`](evidence/performance/2026-10-26-home.json);
+- [`evidence/performance/2026-10-26-home-stage-revamp.json`](evidence/performance/2026-10-26-home-stage-revamp.json);
 - [`evidence/performance/2026-10-26-join.json`](evidence/performance/2026-10-26-join.json);
 - [`evidence/performance/2026-10-26-404.json`](evidence/performance/2026-10-26-404.json).
+
+## Visual-revamp homepage check
+
+The final three-run profile for the dark-stage revamp recorded:
+
+- FCP and LCP median `1.320 s`, with every retained LCP from `1.280 s` to
+  `1.440 s`;
+- CLS `0` in every sample;
+- load-event median `1.781 s`;
+- five-second blocking-time proxy median `327 ms`;
+- TTFB median `13.5 ms`;
+- `11` requests and `186,349` encoded bytes in every sample.
+
+The static SVG/CSS presentation remained visible throughout. The deferred
+Three/R3F chunk did not enter these retained five-second windows, so this
+evidence covers the critical fallback-first path rather than sustained GPU
+cost. Manual browser checks separately confirmed the eligible scene, route
+variant and pause control. Physical-device GPU profiling remains required.
 
 ## Post-remediation three-run medians
 

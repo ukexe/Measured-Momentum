@@ -120,7 +120,8 @@ bouncing and motion-dependent information.
 
 `prefers-reduced-motion: reduce` produces immediate state changes. Saath Rekha
 continuous motion has a visible pause control with session memory and stops
-when its viewport or page is not visible.
+when the page is not visible. The standalone duet also stops outside its
+viewport.
 
 ## Saath Rekha
 
@@ -128,14 +129,17 @@ Saath Rekha is an internal 3D direction, not a public organisation name. Its
 implemented contract is:
 
 - `KineticDuetProps` and failure/discipline types;
-- an immediate static paired-ribbon SVG and decorative, non-instructional
-  description;
-- Three/R3F in a separate lazy client chunk loaded near the viewport;
+- an immediate static CSS presentation plus a paired-ribbon SVG and
+  decorative, non-instructional description on the homepage;
+- Three/R3F in a separate lazy client chunk loaded only after a post-load
+  grace period and idle opportunity;
 - no scene load under reduced motion, Save-Data, unsupported WebGL2 or a major
   performance caveat;
-- demand rendering that stops offscreen, page-hidden or session-paused;
-- lower quality for mobile/coarse-pointer contexts;
-- context-loss/load-error fallback with the static poster retained;
+- demand rendering that stops page-hidden or session-paused, with offscreen
+  stopping retained by the standalone duet;
+- lower quality and a 20fps cap for mobile/coarse-pointer contexts, with
+  higher-quality rendering capped at 30fps;
+- context-loss/load-error fallback with the static presentation retained;
 - HTML retains all meaning and controls;
 - neither ribbon encodes gender, nationality or permanent leadership;
 - no people, tricks, medals, venues, flags or federation marks are simulated.

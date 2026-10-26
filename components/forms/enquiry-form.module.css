@@ -2,36 +2,78 @@
 .unavailable,
 .success,
 .formSection {
+  position: relative;
   max-width: 52rem;
   margin-inline: auto;
   padding: clamp(1.5rem, 4vw, 3rem);
-  border: var(--border-strong) solid var(--color-ink);
-  border-radius: var(--radius-card);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-raised);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-panel);
+  background: var(--glass-strong);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  box-shadow: var(--shadow-float);
+  color: var(--fg);
+  color-scheme: dark;
+}
+
+.formSection::before {
+  position: absolute;
+  top: -1px;
+  right: clamp(1.5rem, 4vw, 3rem);
+  left: clamp(1.5rem, 4vw, 3rem);
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient-signature);
+  box-shadow: 0 0 1.25rem rgb(217 242 87 / 0.35);
+  content: "";
 }
 
 .unavailable {
-  border-left: 0.5rem solid var(--color-warning);
-  background: var(--color-warning-surface);
+  border-color: rgb(217 184 120 / 0.45);
+  border-left: 3px solid var(--accent-brass);
+  background:
+    radial-gradient(90% 70% at 0% 0%, rgb(217 184 120 / 0.12), transparent 65%),
+    var(--glass-strong);
 }
 
 .success {
-  border-left: 0.5rem solid var(--color-success);
+  border-color: rgb(69 214 204 / 0.45);
+  border-left: 3px solid var(--accent-balance);
+  background:
+    radial-gradient(90% 70% at 0% 0%, rgb(69 214 204 / 0.14), transparent 65%),
+    var(--glass-strong);
 }
 
-.success:focus {
-  outline: var(--focus-width) solid var(--focus-color);
-  outline-offset: var(--focus-offset);
+.success:focus,
+.success:focus-visible {
+  outline: 2px solid var(--accent-count);
+  outline-offset: 3px;
 }
 
 .kicker {
   margin-bottom: var(--space-3);
-  color: var(--color-beat);
-  font-size: var(--text-small);
-  font-weight: 750;
-  letter-spacing: 0.08em;
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  line-height: 1.5;
   text-transform: uppercase;
+}
+
+.unavailable .kicker {
+  color: var(--accent-brass);
+}
+
+.success .kicker {
+  color: var(--accent-balance);
+}
+
+.statusPanel h2,
+.unavailable h2,
+.success h2,
+.formHeading h2 {
+  color: var(--fg-strong);
 }
 
 .formHeading {
@@ -45,9 +87,14 @@
   max-width: var(--measure-copy);
 }
 
+.formHeading > p:not(.kicker) {
+  color: var(--fg-muted);
+}
+
 .form {
   display: grid;
   gap: var(--space-6);
+  color-scheme: dark;
 }
 
 .field {
@@ -58,15 +105,18 @@
 .field > label,
 .label {
   margin: 0;
-  color: var(--color-ink);
-  font-weight: 750;
+  color: var(--fg-strong);
+  font-weight: 650;
 }
 
 .field > label span {
   margin-left: var(--space-2);
-  color: var(--color-text-muted);
-  font-size: var(--text-small);
+  color: var(--fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
   font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .field input,
@@ -74,12 +124,28 @@
 .field textarea {
   width: 100%;
   min-height: 3rem;
-  padding: 0.75rem;
-  border: var(--border-strong) solid var(--color-line);
+  padding: 0.75rem 0.9rem;
+  border: 1px solid rgb(247 241 230 / 0.42);
   border-radius: var(--radius-control);
-  background: var(--color-surface);
-  color: var(--color-ink);
+  background: var(--stage-2);
+  box-shadow: inset 0 1px 0 rgb(247 241 230 / 0.04);
+  color: var(--fg-strong);
   font: inherit;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.field select option {
+  background: var(--stage-2);
+  color: var(--fg-strong);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: var(--fg-muted);
+  opacity: 1;
 }
 
 .field textarea {
@@ -87,28 +153,46 @@
   resize: vertical;
 }
 
+.field input:hover,
+.field select:hover,
+.field textarea:hover {
+  border-color: rgb(247 241 230 / 0.62);
+}
+
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: var(--focus-color);
+  border-color: var(--accent-count);
+  outline: 2px solid var(--accent-count);
+  outline-offset: 2px;
+  background: var(--stage-3);
+  box-shadow: 0 0 0 4px rgb(217 242 87 / 0.16);
 }
 
 .field input[aria-invalid="true"],
 .field select[aria-invalid="true"],
 .field textarea[aria-invalid="true"] {
-  border-color: var(--color-error);
-  box-shadow: 0 0 0 1px var(--color-error);
+  border-color: var(--accent-beat);
+  box-shadow: 0 0 0 1px var(--accent-beat);
+}
+
+.field input[aria-invalid="true"]:focus,
+.field select[aria-invalid="true"]:focus,
+.field textarea[aria-invalid="true"]:focus {
+  box-shadow:
+    0 0 0 1px var(--accent-beat),
+    0 0 0 5px rgb(255 107 134 / 0.2);
 }
 
 .hint {
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
   font-size: var(--text-small);
 }
 
 .fieldError {
   margin: 0;
-  color: var(--color-error);
+  color: var(--accent-beat);
   font-size: var(--text-small);
   font-weight: 700;
 }
@@ -116,18 +200,31 @@
 .errorSummary {
   margin-bottom: var(--space-8);
   padding: var(--space-6);
-  border: var(--border-strong) solid var(--color-error);
-  border-left-width: 0.5rem;
-  background: #fff4f3;
+  border: 1px solid rgb(255 107 134 / 0.55);
+  border-left: 4px solid var(--accent-beat);
+  border-radius: var(--radius-control);
+  background: rgb(255 107 134 / 0.1);
+  color: var(--fg-strong);
 }
 
-.errorSummary:focus {
-  outline: var(--focus-width) solid var(--focus-color);
-  outline-offset: var(--focus-offset);
+.errorSummary:focus,
+.errorSummary:focus-visible {
+  outline: 2px solid var(--accent-count);
+  outline-offset: 3px;
 }
 
 .errorSummary h3 {
+  color: var(--fg-strong);
   font-size: 1.4rem;
+}
+
+.errorSummary a {
+  color: var(--accent-beat);
+  text-underline-offset: 0.2em;
+}
+
+.errorSummary a:hover {
+  color: var(--fg-strong);
 }
 
 .errorSummary ul {
@@ -139,11 +236,14 @@
   gap: var(--space-4);
   margin: 0;
   padding: var(--space-6);
-  border: var(--border-strong) solid var(--color-line);
+  border: 1px solid var(--hairline-strong);
+  border-radius: var(--radius-control);
+  background: rgb(5 6 10 / 0.35);
 }
 
 .consents legend {
   padding-inline: var(--space-2);
+  color: var(--fg-strong);
   font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 750;
@@ -154,6 +254,8 @@
   grid-template-columns: 1.5rem minmax(0, 1fr);
   gap: var(--space-3);
   align-items: start;
+  min-height: 2.75rem;
+  color: var(--fg);
   cursor: pointer;
 }
 
@@ -161,15 +263,21 @@
   width: 1.35rem;
   height: 1.35rem;
   margin: 0.2rem 0 0;
-  accent-color: var(--color-beat);
+  accent-color: var(--accent-count);
+}
+
+.checkbox input:focus-visible {
+  outline: 2px solid var(--accent-count);
+  outline-offset: 3px;
 }
 
 .verification {
   display: grid;
   gap: var(--space-2);
   padding: var(--space-4);
-  border: var(--border-thin) solid var(--color-line);
-  background: var(--color-surface-muted);
+  border: 1px dashed var(--hairline-strong);
+  border-radius: var(--radius-control);
+  background: rgb(5 6 10 / 0.35);
 }
 
 .submitArea {
@@ -177,14 +285,19 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-4);
-  padding-top: var(--space-2);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--hairline);
 }
 
 .submitArea p {
   max-width: 34rem;
   margin: 0;
-  color: var(--color-text-muted);
+  color: var(--fg-muted);
   font-size: var(--text-small);
+}
+
+.submitArea button {
+  min-height: 2.75rem;
 }
 
 .submitArea button:disabled {
@@ -202,12 +315,24 @@
   white-space: nowrap;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .field input,
+  .field select,
+  .field textarea {
+    transition: none;
+  }
+}
+
 @media (max-width: 36rem) {
   .statusPanel,
   .unavailable,
   .success,
   .formSection {
-    padding: var(--space-6);
+    padding: var(--space-6) var(--space-4);
+  }
+
+  .consents {
+    padding: var(--space-4);
   }
 
   .submitArea,
@@ -225,6 +350,25 @@
   .consents,
   .verification {
     border: var(--border-strong) solid CanvasText;
+    background: Canvas;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  .formSection::before {
+    display: none;
+  }
+
+  .field input,
+  .field select,
+  .field textarea {
+    border: var(--border-strong) solid CanvasText;
+  }
+
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    outline: 2px solid Highlight;
   }
 
   .field input[aria-invalid="true"],

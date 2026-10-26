@@ -99,7 +99,7 @@ Use Server Components by default. Client code is limited to:
 
 - Radix mobile navigation and its focus lifecycle;
 - enquiry capability/form state and conditional Turnstile;
-- Saath Rekha adaptation and the lazy canvas.
+- Saath Rekha adaptation and the lazy global stage.
 
 Shared content, status, links and route structure remain provider-free.
 Client-side validation is convenience only; the Worker repeats all
@@ -107,13 +107,16 @@ submission validation.
 
 ## TD-008 — Saath Rekha is an implemented fallback-first enhancement
 
-The SVG poster is always mounted and carries the visual’s non-instructional
-description. Three `0.186.1` and R3F `9.8.2` live in a lazy chunk loaded near
-the viewport only after reduced-motion, Save-Data and WebGL2 checks pass.
+The static CSS presentation is always available and the homepage also mounts
+the paired-ribbon SVG. Three `0.186.1` and R3F `9.8.2` live in a lazy chunk
+loaded only after reduced-motion, Save-Data and WebGL2 checks pass, a
+3.5-second post-load grace period elapses and the browser offers an idle
+opportunity.
 
-Use demand rendering, lower quality on mobile/coarse pointers, a persistent
-pause control, page/viewport visibility checks, resource disposal and
-context-loss/error fallback. The canvas is decorative and never contains
+Use demand rendering, lower quality and a 20fps cap on mobile/coarse pointers,
+a 30fps cap otherwise, a persistent pause control, page-visibility checks,
+resource disposal and context-loss/error fallback. The standalone duet retains
+its viewport visibility checks. The canvas is decorative and never contains
 status, navigation or instructional meaning.
 
 ## TD-009 — Build-time canonical and indexing policy

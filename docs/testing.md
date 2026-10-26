@@ -22,10 +22,13 @@ Vitest runs `tests/unit/**/*.test.{ts,tsx}` and
 - enquiry form unavailable, validation, error, duplicate-submit and confirmed
   success states;
 - Saath Rekha geometry, load policy, reduced-motion/unsupported fallback,
-  viewport activation and pause state.
+  viewport activation and pause state;
+- global stage deferral, reduced-motion and Save-Data fallback, route variant
+  and persistent pause state.
 
 These tests run Worker modules in the test JavaScript environment, not in a
-deployed Cloudflare account. The Saath Rekha shell test mocks the R3F canvas.
+deployed Cloudflare account. The Saath Rekha shell and global-stage tests mock
+their R3F canvases.
 
 Playwright builds the static export, starts `wrangler dev` on port 8787 and
 runs the same browser suite in Chromium, Firefox, WebKit and a Pixel 7 Chromium

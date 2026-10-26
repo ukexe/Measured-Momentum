@@ -70,26 +70,29 @@ state or interaction is required:
 
 - Radix-based mobile navigation;
 - enquiry form state and the conditional Turnstile widget;
-- the adaptive Saath Rekha shell and lazy Three/R3F canvas.
+- the adaptive global Saath Rekha shell and lazy Three/R3F stage.
 
 No global client provider is used. Status, navigation, core copy and form
 availability meaning remain in semantic HTML.
 
 ## Saath Rekha
 
-The homepage mounts an SVG paired-ribbon poster and hidden descriptive caption
-immediately. The client shell probes user and device conditions before loading
-the separate canvas chunk:
+The global shell mounts a static CSS presentation immediately, while the
+homepage adds an SVG paired-ribbon poster. The client shell probes user and
+device conditions before loading the separate canvas chunk:
 
 - `prefers-reduced-motion: reduce`, Save-Data, failed/unsupported WebGL2 or a
-  major performance caveat keeps the poster and avoids scene loading;
-- an observer starts loading only near the viewport;
-- mobile/coarse-pointer contexts select lower geometry quality and DPR;
-- `frameloop="demand"` stops continuous work when offscreen, page-hidden,
-  session-paused or otherwise inactive;
+  major performance caveat keeps the static presentation and avoids scene
+  loading;
+- an eligible scene starts only after a 3.5-second post-load grace period and
+  an idle opportunity;
+- mobile/coarse-pointer contexts select lower geometry quality, DPR and a
+  20fps cap; higher-quality contexts are capped at 30fps;
+- `frameloop="demand"` stops continuous work when page-hidden, session-paused
+  or otherwise inactive;
 - a visible pause/play control stores its choice in `sessionStorage`;
 - WebGL context loss, lazy-load failure and renderer failure return to the
-  poster;
+  static CSS/SVG presentation;
 - the canvas is decorative, pointer-inert and excluded from the accessibility
   tree.
 

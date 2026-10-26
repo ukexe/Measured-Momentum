@@ -5,6 +5,12 @@ import { footerNavigationGroups, siteConfig } from "@/content/site";
 export function SiteFooter() {
   return (
     <footer className="site-footer">
+      <div className="site-footer__horizon" aria-hidden="true" />
+      <div className="container site-footer__count-rail" aria-hidden="true">
+        {Array.from({ length: 8 }, (_, index) => (
+          <span key={index} />
+        ))}
+      </div>
       <div className="container site-footer__inner">
         <div className="site-footer__intro">
           <p className="site-footer__platform">{siteConfig.creativePlatform}</p>
