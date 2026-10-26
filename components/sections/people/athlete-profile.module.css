@@ -1,0 +1,230 @@
+.page {
+  padding-bottom: clamp(var(--space-16), 9vw, var(--space-24));
+}
+
+.breadcrumbs {
+  padding-block: var(--space-6);
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.breadcrumbs ol {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.breadcrumbs li {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  margin-left: var(--space-2);
+  color: var(--color-line);
+  content: "/";
+}
+
+.profileHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(17rem, 0.65fr);
+  gap: var(--space-8);
+  align-items: end;
+  padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+}
+
+.relationship,
+.kicker {
+  margin-bottom: var(--space-3);
+  color: var(--color-beat);
+  font-size: var(--text-small);
+  font-weight: 750;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.disciplineLine {
+  margin-bottom: var(--space-2);
+  font-size: var(--text-lead);
+  font-weight: 650;
+}
+
+.location {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.verification {
+  margin: 0;
+  border-top: var(--border-strong) solid var(--color-ink);
+}
+
+.verification div {
+  display: grid;
+  grid-template-columns: minmax(7rem, 0.7fr) minmax(0, 1.3fr);
+  gap: var(--space-4);
+  padding-block: var(--space-3);
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.verification dt {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.verification dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.identitySection {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(var(--space-8), 8vw, var(--space-24));
+  align-items: center;
+  padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+  border-block: var(--border-thin) solid var(--color-line);
+}
+
+.portraitFrame {
+  min-height: 24rem;
+  border-radius: var(--radius-card);
+  background: var(--color-surface-muted);
+}
+
+.portraitFrame figure {
+  margin: 0;
+}
+
+.portraitFrame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-card) var(--radius-card) 0 0;
+}
+
+.portraitFrame figcaption {
+  padding: var(--space-3);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.portraitAlternative {
+  display: grid;
+  min-height: 24rem;
+  place-content: center;
+  padding: var(--space-8);
+  text-align: center;
+}
+
+.portraitAlternative span {
+  color: var(--color-beat);
+  font-family: var(--font-display);
+  font-size: 6rem;
+  line-height: 1;
+}
+
+.portraitAlternative p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.biography {
+  max-width: var(--measure-copy);
+}
+
+.biography > p:last-child,
+.perspective > p:last-child {
+  font-size: var(--text-lead);
+}
+
+.perspective,
+.achievements {
+  padding-block: clamp(var(--space-12), 8vw, var(--space-24));
+}
+
+.perspective {
+  max-width: var(--measure-copy);
+}
+
+.achievements {
+  border-top: var(--border-strong) solid var(--color-ink);
+}
+
+.sectionHeading {
+  margin-bottom: var(--space-8);
+}
+
+.achievementList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.achievementList li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-6);
+  align-items: center;
+  padding-block: var(--space-6);
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+.achievementList li:last-child {
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.achievementList h3 {
+  margin-bottom: var(--space-2);
+}
+
+.achievementList p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.profileScope {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+  gap: var(--space-8);
+  align-items: center;
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-count);
+}
+
+.profileScope p:not(.kicker) {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+}
+
+.profileScope .kicker {
+  color: var(--color-ink);
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (max-width: 48rem) {
+  .profileHeader,
+  .identitySection,
+  .profileScope {
+    grid-template-columns: 1fr;
+  }
+
+  .achievementList li {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (forced-colors: active) {
+  .portraitFrame,
+  .profileScope {
+    border: var(--border-strong) solid CanvasText;
+  }
+}

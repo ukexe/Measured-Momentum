@@ -1,0 +1,235 @@
+.statusPanel,
+.unavailable,
+.success,
+.formSection {
+  max-width: 52rem;
+  margin-inline: auto;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.unavailable {
+  border-left: 0.5rem solid var(--color-warning);
+  background: var(--color-warning-surface);
+}
+
+.success {
+  border-left: 0.5rem solid var(--color-success);
+}
+
+.success:focus {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+.kicker {
+  margin-bottom: var(--space-3);
+  color: var(--color-beat);
+  font-size: var(--text-small);
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.formHeading {
+  margin-bottom: var(--space-8);
+}
+
+.formHeading > p:not(.kicker),
+.statusPanel p,
+.unavailable p,
+.success p {
+  max-width: var(--measure-copy);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.field {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.field > label,
+.label {
+  margin: 0;
+  color: var(--color-ink);
+  font-weight: 750;
+}
+
+.field > label span {
+  margin-left: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: 500;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.75rem;
+  border: var(--border-strong) solid var(--color-line);
+  border-radius: var(--radius-control);
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font: inherit;
+}
+
+.field textarea {
+  min-height: 10rem;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--focus-color);
+}
+
+.field input[aria-invalid="true"],
+.field select[aria-invalid="true"],
+.field textarea[aria-invalid="true"] {
+  border-color: var(--color-error);
+  box-shadow: 0 0 0 1px var(--color-error);
+}
+
+.hint {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.fieldError {
+  margin: 0;
+  color: var(--color-error);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.errorSummary {
+  margin-bottom: var(--space-8);
+  padding: var(--space-6);
+  border: var(--border-strong) solid var(--color-error);
+  border-left-width: 0.5rem;
+  background: #fff4f3;
+}
+
+.errorSummary:focus {
+  outline: var(--focus-width) solid var(--focus-color);
+  outline-offset: var(--focus-offset);
+}
+
+.errorSummary h3 {
+  font-size: 1.4rem;
+}
+
+.errorSummary ul {
+  margin-bottom: 0;
+}
+
+.consents {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-6);
+  border: var(--border-strong) solid var(--color-line);
+}
+
+.consents legend {
+  padding-inline: var(--space-2);
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 750;
+}
+
+.checkbox {
+  display: grid;
+  grid-template-columns: 1.5rem minmax(0, 1fr);
+  gap: var(--space-3);
+  align-items: start;
+  cursor: pointer;
+}
+
+.checkbox input {
+  width: 1.35rem;
+  height: 1.35rem;
+  margin: 0.2rem 0 0;
+  accent-color: var(--color-beat);
+}
+
+.verification {
+  display: grid;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: var(--border-thin) solid var(--color-line);
+  background: var(--color-surface-muted);
+}
+
+.submitArea {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-2);
+}
+
+.submitArea p {
+  max-width: 34rem;
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.submitArea button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  translate: none;
+}
+
+.honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@media (max-width: 36rem) {
+  .statusPanel,
+  .unavailable,
+  .success,
+  .formSection {
+    padding: var(--space-6);
+  }
+
+  .submitArea,
+  .submitArea button {
+    width: 100%;
+  }
+}
+
+@media (forced-colors: active) {
+  .statusPanel,
+  .unavailable,
+  .success,
+  .formSection,
+  .errorSummary,
+  .consents,
+  .verification {
+    border: var(--border-strong) solid CanvasText;
+  }
+
+  .field input[aria-invalid="true"],
+  .field select[aria-invalid="true"],
+  .field textarea[aria-invalid="true"] {
+    border-style: dashed;
+  }
+}

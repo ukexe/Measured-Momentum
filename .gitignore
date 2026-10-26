@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Next.js and static export
+.next/
+out/
+
+# Cloudflare local state and dry-run output
+.wrangler/
+dist/
+
+# Test output
+coverage/
+playwright-report/
+test-results/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+*.tsbuildinfo

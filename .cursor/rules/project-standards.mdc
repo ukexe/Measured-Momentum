@@ -1,0 +1,28 @@
+---
+description: Core architecture, truth, and quality boundaries for this project
+alwaysApply: true
+---
+
+# Project standards
+
+- Preserve `docs/drafts/**`; drafts are evidence, not approved public content.
+- Keep **Proposed organisation · In development** visible in the global shell.
+- Do not imply legal status, recognition, affiliation, authority, people,
+  results, events, sponsors, or official contact details without verified
+  evidence and publication approval.
+- Keep editorial routes static-export compatible and trailing-slashed.
+- Do not introduce SSR, ISR, Server Actions, runtime page data, or remote
+  build-time assets without an approved architecture decision.
+- Let Cloudflare Static Assets serve non-API requests. Worker-first routing is
+  limited to `/api/*`; non-API Worker requests delegate to `env.ASSETS.fetch`.
+- Enquiry endpoints fail closed with `503 FORM_SERVICE_UNAVAILABLE` until
+  durable persistence and its controls are fully configured.
+- Keep secrets out of `NEXT_PUBLIC_*`, source, examples, logs, and client
+  bundles.
+- Prefer Server Components, semantic HTML, progressive enhancement, and narrow
+  client islands.
+- Keep Saath Rekha fallback-first, deferred, reduced-motion aware, and
+  nonessential.
+- Use exact package versions, strict TypeScript, and the committed npm lockfile.
+- Run formatting, lint, typecheck, unit tests, build, and non-mutating Wrangler
+  validation before handoff.

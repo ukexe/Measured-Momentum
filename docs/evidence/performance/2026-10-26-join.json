@@ -1,0 +1,71 @@
+{
+  "measuredAt": "2026-10-25T22:05:57.839Z",
+  "note": "Lab load metrics only. The five-second blocking-time value is a long-task proxy, not field INP.",
+  "runtime": {
+    "browser": "156.0.8078.4",
+    "node": "v22.23.2",
+    "retainedRuns": 3,
+    "warmupRuns": 1
+  },
+  "profile": {
+    "cpuSlowdownMultiplier": 4,
+    "downloadBitsPerSecond": 1600000,
+    "uploadBitsPerSecond": 750000,
+    "latencyMs": 150,
+    "observationAfterLoadMs": 5000
+  },
+  "target": "http://127.0.0.1:8790/join/",
+  "samples": [
+    {
+      "blockingTime5sMs": 528,
+      "cls": 0,
+      "domContentLoadedMs": 611.1999998092651,
+      "fcpMs": 960,
+      "lcpMs": 960,
+      "loadMs": 2041.6999998092651,
+      "longTaskCount": 4,
+      "ttfbMs": 16.300000190734863,
+      "requests": 14,
+      "status": 200,
+      "transferredBytes": 213019
+    },
+    {
+      "blockingTime5sMs": 591,
+      "cls": 0,
+      "domContentLoadedMs": 1054.7000000476837,
+      "fcpMs": 1084,
+      "lcpMs": 1084,
+      "loadMs": 2104.100000143051,
+      "longTaskCount": 3,
+      "ttfbMs": 17.700000047683716,
+      "requests": 14,
+      "status": 200,
+      "transferredBytes": 213019
+    },
+    {
+      "blockingTime5sMs": 558,
+      "cls": 0,
+      "domContentLoadedMs": 963.2000000476837,
+      "fcpMs": 988,
+      "lcpMs": 988,
+      "loadMs": 2056,
+      "longTaskCount": 3,
+      "ttfbMs": 14.599999904632568,
+      "requests": 14,
+      "status": 200,
+      "transferredBytes": 213019
+    }
+  ],
+  "medians": {
+    "blockingTime5sMs": 558,
+    "cls": 0,
+    "domContentLoadedMs": 963.2000000476837,
+    "fcpMs": 988,
+    "lcpMs": 988,
+    "loadMs": 2056,
+    "longTaskCount": 3,
+    "requests": 14,
+    "transferredBytes": 213019,
+    "ttfbMs": 16.300000190734863
+  }
+}

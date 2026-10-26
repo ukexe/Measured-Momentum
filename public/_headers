@@ -1,0 +1,22 @@
+# Workers Static Assets applies this file only to asset responses. API
+# responses set their own headers in Worker code.
+#
+# This compatible CSP baseline intentionally omits default-src and script-src:
+# the static Next.js export uses inline bootstrap and JSON-LD script elements.
+# A future Turnstile or other external integration must add only its reviewed,
+# exact script, frame and connection origins.
+#
+# Indexing is controlled at build time by page metadata and robots.txt. A
+# shared static file cannot safely express environment-specific X-Robots-Tag
+# policy. HSTS remains a deployment/domain approval decision.
+/*
+  Content-Security-Policy: base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+  Permissions-Policy: camera=(), geolocation=(), microphone=(), payment=(), usb=()
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable

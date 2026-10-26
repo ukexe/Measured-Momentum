@@ -1,0 +1,58 @@
+.page {
+  padding-block: clamp(3rem, 8vw, 7rem);
+}
+
+.intro {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(18rem, 4fr);
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: start;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+}
+
+.notice {
+  padding: var(--space-6);
+  border-top: 0.4rem solid var(--color-beat);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.notice h2 {
+  font-size: var(--text-h3);
+}
+
+.notice p:last-child {
+  margin-bottom: 0;
+}
+
+.boundaries {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.formArea {
+  padding-block: var(--space-8);
+}
+
+.noScript {
+  max-width: 52rem;
+  margin: var(--space-6) auto 0;
+  padding: var(--space-4);
+  border-left: 0.4rem solid var(--color-warning);
+  background: var(--color-warning-surface);
+}
+
+@media (max-width: 52rem) {
+  .intro {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (forced-colors: active) {
+  .notice,
+  .noScript {
+    border: var(--border-strong) solid CanvasText;
+  }
+}

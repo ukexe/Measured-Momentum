@@ -1,0 +1,380 @@
+.page {
+  overflow: clip;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(17rem, 4fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+  align-items: end;
+  padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+}
+
+.heroCopy {
+  max-width: 54rem;
+}
+
+.heroStatus {
+  position: relative;
+  padding: var(--space-8);
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-count);
+  box-shadow: var(--shadow-raised);
+}
+
+.heroStatus::before {
+  position: absolute;
+  width: 5rem;
+  height: var(--border-strong);
+  top: var(--space-8);
+  right: calc(100% - var(--space-4));
+  background: var(--color-ink);
+  content: "";
+}
+
+.measureLabel,
+.kicker,
+.cardLabel {
+  margin-bottom: var(--space-3);
+  color: var(--color-beat);
+  font-size: var(--text-small);
+  font-weight: 750;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.measureLabel {
+  color: var(--color-ink);
+}
+
+.heroStatusTitle {
+  margin-bottom: var(--space-3);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 720;
+  line-height: 1.1;
+}
+
+.heroStatus p:last-child {
+  margin-bottom: 0;
+}
+
+.statusSection {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+  scroll-margin-top: var(--space-8);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.sectionHeading {
+  max-width: var(--measure-copy);
+}
+
+.sectionHeading > p:last-child {
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+}
+
+.statusSection .sectionHeading > p:last-child {
+  color: var(--color-surface-muted);
+}
+
+.statusLedger {
+  margin: var(--space-12) 0 0;
+  border-top: var(--border-thin) solid
+    color-mix(in srgb, var(--color-paper) 40%, transparent);
+}
+
+.statusRow {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.65fr) minmax(0, 1.35fr);
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  border-bottom: var(--border-thin) solid
+    color-mix(in srgb, var(--color-paper) 40%, transparent);
+}
+
+.statusRow dt {
+  color: var(--color-count);
+  font-weight: 750;
+}
+
+.statusRow dd {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.45fr) minmax(0, 1.55fr);
+  gap: var(--space-6);
+  margin: 0;
+}
+
+.statusRow dd strong {
+  color: var(--color-paper);
+}
+
+.statusRow dd span {
+  color: var(--color-surface-muted);
+}
+
+.rationaleSection,
+.horizonSection,
+.scopeSection,
+.sequenceSection {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+}
+
+.rationaleSection {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+}
+
+.prose {
+  max-width: var(--measure-copy);
+  font-size: var(--text-lead);
+}
+
+.prose p:last-child {
+  margin-bottom: 0;
+}
+
+.horizonSection {
+  border-top: var(--border-strong) solid var(--color-ink);
+}
+
+.horizonGrid,
+.intentGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-12);
+}
+
+.horizonCard {
+  min-height: 18rem;
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border-radius: var(--radius-card);
+}
+
+.horizonCard:first-child {
+  border: var(--border-strong) solid var(--color-balance);
+  background: var(--color-surface);
+}
+
+.horizonCard:last-child {
+  border: var(--border-strong) solid var(--color-step);
+  background: var(--color-info-surface);
+}
+
+.horizonCard p:last-child,
+.intentCard p:last-child {
+  max-width: 56ch;
+  margin-bottom: 0;
+}
+
+.intentSection {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+  background: var(--color-surface-muted);
+}
+
+.intentCard {
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border-top: 0.4rem solid var(--color-beat);
+  background: var(--color-surface);
+  box-shadow: 0 0.25rem 1rem
+    color-mix(in srgb, var(--color-ink) 8%, transparent);
+}
+
+.intentCard:last-child {
+  border-color: var(--color-balance);
+}
+
+.scopeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.scopeGrid li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border: var(--border-thin) solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.scopeGrid li:last-child {
+  grid-column: 1 / -1;
+}
+
+.scopeGrid h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.scopeGrid p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.scopeIndex {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-count);
+  color: var(--color-ink);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.valuesSection {
+  padding-block: clamp(var(--space-16), 8vw, var(--space-24));
+  background: var(--color-balance);
+  color: var(--color-surface);
+}
+
+.valuesSection .kicker {
+  color: var(--color-count);
+}
+
+.valuesGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0;
+  margin-top: var(--space-12);
+  border-top: var(--border-thin) solid
+    color-mix(in srgb, var(--color-surface) 55%, transparent);
+  border-left: var(--border-thin) solid
+    color-mix(in srgb, var(--color-surface) 55%, transparent);
+}
+
+.valuesGrid article {
+  padding: var(--space-6);
+  border-right: var(--border-thin) solid
+    color-mix(in srgb, var(--color-surface) 55%, transparent);
+  border-bottom: var(--border-thin) solid
+    color-mix(in srgb, var(--color-surface) 55%, transparent);
+}
+
+.valuesGrid h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.valuesGrid p {
+  margin-bottom: 0;
+  color: var(--color-paper);
+}
+
+.sequence {
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sequence li {
+  display: grid;
+  grid-template-columns: minmax(4rem, 0.25fr) minmax(0, 1.75fr);
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+.sequence li:last-child {
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.sequenceNumber {
+  color: var(--color-beat);
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 750;
+  font-variant-numeric: tabular-nums;
+}
+
+.sequence h3 {
+  margin-bottom: var(--space-2);
+}
+
+.sequence p {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.transparencySection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: clamp(var(--space-16), 8vw, var(--space-24));
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.transparencySection p:not(.kicker) {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+}
+
+.transparencyActions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (max-width: 58rem) {
+  .hero,
+  .rationaleSection,
+  .transparencySection {
+    grid-template-columns: 1fr;
+  }
+
+  .heroStatus::before {
+    display: none;
+  }
+
+  .valuesGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 42rem) {
+  .statusRow,
+  .statusRow dd,
+  .horizonGrid,
+  .intentGrid,
+  .scopeGrid,
+  .valuesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .scopeGrid li:last-child {
+    grid-column: auto;
+  }
+
+  .statusRow dd {
+    gap: var(--space-2);
+  }
+
+  .sequence li {
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-3);
+  }
+}
+
+@media (forced-colors: active) {
+  .heroStatus,
+  .horizonCard,
+  .intentCard,
+  .scopeGrid li,
+  .transparencySection {
+    border: var(--border-strong) solid CanvasText;
+  }
+}

@@ -1,0 +1,402 @@
+.page {
+  overflow: clip;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+  align-items: center;
+  padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+}
+
+.orientationNote {
+  padding: var(--space-8);
+  border-left: 0.5rem solid var(--color-warning);
+  background: var(--color-warning-surface);
+  color: var(--color-warning);
+}
+
+.orientationNote h2 {
+  font-size: var(--text-h3);
+}
+
+.orientationNote p:last-child {
+  margin-bottom: 0;
+}
+
+.noteLabel,
+.kicker,
+.inverseKicker,
+.sourceOwner {
+  margin-bottom: var(--space-3);
+  font-size: var(--text-small);
+  font-weight: 750;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.noteLabel {
+  color: var(--color-warning);
+}
+
+.kicker,
+.sourceOwner {
+  color: var(--color-beat);
+}
+
+.inverseKicker {
+  color: var(--color-count);
+}
+
+.jumpNav {
+  border-block: var(--border-thin) solid var(--color-line);
+  background: var(--color-surface);
+}
+
+.jumpNav > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4) var(--space-8);
+  padding-block: var(--space-3);
+}
+
+.jumpNav span {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.jumpNav ul {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.jumpNav a {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  color: var(--color-ink);
+  font-size: var(--text-small);
+  font-weight: 700;
+}
+
+.disciplineStack {
+  display: grid;
+  gap: clamp(var(--space-16), 10vw, var(--space-32));
+  padding-block: clamp(var(--space-16), 10vw, var(--space-32));
+}
+
+.discipline {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  scroll-margin-top: var(--space-8);
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-raised);
+}
+
+.discipline:nth-child(even) .disciplineIntro {
+  order: 2;
+  background: var(--color-info-surface);
+}
+
+.discipline:nth-child(even) .disciplineDetails {
+  order: 1;
+}
+
+.disciplineIntro {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  background: var(--color-surface-muted);
+}
+
+.disciplineNumber {
+  position: absolute;
+  top: calc(var(--space-8) * -1);
+  right: var(--space-4);
+  margin: 0;
+  color: color-mix(in srgb, var(--color-beat) 14%, transparent);
+  font-family: var(--font-display);
+  font-size: clamp(8rem, 20vw, 15rem);
+  font-weight: 800;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.disciplineIntro > :not(.disciplineNumber) {
+  position: relative;
+}
+
+.lead {
+  max-width: 54ch;
+  font-size: var(--text-lead);
+}
+
+.boundary {
+  max-width: 54ch;
+  margin-top: var(--space-8);
+  margin-bottom: 0;
+  padding-top: var(--space-4);
+  border-top: var(--border-strong) solid var(--color-beat);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.disciplineDetails {
+  display: grid;
+  align-content: center;
+  gap: var(--space-12);
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+}
+
+.disciplineDetails section + section {
+  padding-top: var(--space-8);
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+.disciplineDetails h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.disciplineDetails ul {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding-left: 1.2em;
+}
+
+.disciplineDetails li::marker {
+  color: var(--color-balance);
+}
+
+.foundationsSection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  background: var(--color-surface-muted);
+}
+
+.sectionHeading {
+  max-width: var(--measure-copy);
+}
+
+.sectionHeading > p:last-child {
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+}
+
+.foundationRail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  border-top: var(--border-strong) solid var(--color-ink);
+  list-style: none;
+}
+
+.foundationRail li {
+  padding: var(--space-6);
+  border-right: var(--border-thin) solid var(--color-line);
+}
+
+.foundationRail li:last-child {
+  border-right: 0;
+}
+
+.foundationRail span {
+  display: block;
+  margin-bottom: var(--space-6);
+  color: var(--color-beat);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 750;
+}
+
+.foundationRail h3 {
+  font-size: 1.25rem;
+}
+
+.foundationRail p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.safetySection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  scroll-margin-top: var(--space-8);
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.safetyGrid {
+  display: grid;
+  grid-template-columns: minmax(18rem, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(var(--space-8), 8vw, var(--space-24));
+}
+
+.safetyCopy {
+  max-width: var(--measure-copy);
+  padding-left: var(--space-8);
+  border-left: 0.4rem solid var(--color-count);
+  color: var(--color-surface-muted);
+}
+
+.safetyCopy p:last-child {
+  margin-bottom: 0;
+}
+
+.sourcesSection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  scroll-margin-top: var(--space-8);
+}
+
+.sourceList {
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sourceList li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: var(--space-6);
+  align-items: start;
+  padding-block: var(--space-6);
+  border-top: var(--border-thin) solid var(--color-line);
+}
+
+.sourceList li:last-child {
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.sourceList h3 {
+  margin-bottom: var(--space-2);
+}
+
+.sourceList h3 a {
+  color: var(--color-step);
+}
+
+.sourceList p:not(.sourceOwner, .accessDate) {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.accessDate {
+  margin: 0;
+  padding: var(--space-2) var(--space-3);
+  border: var(--border-thin) solid var(--color-line);
+  border-radius: var(--radius-control);
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+  white-space: nowrap;
+}
+
+.sourceBoundary {
+  max-width: var(--measure-copy);
+  margin: var(--space-8) 0 0;
+  padding: var(--space-4);
+  border-left: 0.35rem solid var(--color-step);
+  background: var(--color-info-surface);
+  color: var(--color-ink);
+  font-size: var(--text-small);
+}
+
+.nextStep {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(17rem, 0.8fr);
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: clamp(var(--space-16), 9vw, var(--space-24));
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  border-radius: var(--radius-card);
+  background: var(--color-count);
+}
+
+.nextStep p:not(.kicker) {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+}
+
+.nextStep .kicker {
+  color: var(--color-ink);
+}
+
+.actions {
+  display: grid;
+  gap: var(--space-3);
+}
+
+@media (max-width: 64rem) {
+  .foundationRail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    border-left: var(--border-thin) solid var(--color-line);
+  }
+
+  .foundationRail li {
+    border-bottom: var(--border-thin) solid var(--color-line);
+  }
+
+  .foundationRail li:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 52rem) {
+  .hero,
+  .discipline,
+  .safetyGrid,
+  .nextStep {
+    grid-template-columns: 1fr;
+  }
+
+  .discipline:nth-child(even) .disciplineIntro,
+  .discipline:nth-child(even) .disciplineDetails {
+    order: initial;
+  }
+
+  .safetyCopy {
+    padding-top: var(--space-6);
+    padding-left: 0;
+    border-top: 0.4rem solid var(--color-count);
+    border-left: 0;
+  }
+}
+
+@media (max-width: 38rem) {
+  .jumpNav > div,
+  .jumpNav ul {
+    display: grid;
+  }
+
+  .foundationRail,
+  .sourceList li {
+    grid-template-columns: 1fr;
+  }
+
+  .foundationRail li:last-child {
+    grid-column: auto;
+  }
+
+  .accessDate {
+    width: fit-content;
+  }
+}
+
+@media (forced-colors: active) {
+  .orientationNote,
+  .discipline,
+  .sourceBoundary,
+  .nextStep {
+    border: var(--border-strong) solid CanvasText;
+  }
+}

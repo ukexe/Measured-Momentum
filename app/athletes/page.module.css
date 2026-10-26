@@ -1,0 +1,347 @@
+.page {
+  overflow: clip;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+  align-items: end;
+  padding-block: clamp(var(--space-16), 9vw, var(--space-32));
+}
+
+.notTeam {
+  padding: var(--space-8);
+  border: var(--border-strong) solid var(--color-beat);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.notTeam p:last-child {
+  margin-bottom: 0;
+  font-size: var(--text-lead);
+}
+
+.kicker,
+.inverseKicker,
+.stepStatus {
+  margin-bottom: var(--space-3);
+  color: var(--color-beat);
+  font-size: var(--text-small);
+  font-weight: 750;
+  letter-spacing: 0.075em;
+  text-transform: uppercase;
+}
+
+.inverseKicker {
+  color: var(--color-count);
+}
+
+.sectionHeading {
+  max-width: var(--measure-copy);
+}
+
+.sectionHeading > p:last-child,
+.partnerHeading > p:last-child {
+  color: var(--color-text-muted);
+  font-size: var(--text-lead);
+}
+
+.pathwaySection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  background: var(--color-surface-muted);
+}
+
+.pathway {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pathway::before {
+  position: absolute;
+  z-index: 0;
+  top: 2.15rem;
+  right: 10%;
+  left: 10%;
+  height: var(--border-strong);
+  background: var(--color-line);
+  content: "";
+}
+
+.pathway li {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.stepMarker {
+  display: flex;
+  min-height: 4.5rem;
+  align-items: start;
+}
+
+.stepMarker span {
+  display: grid;
+  width: 4.5rem;
+  height: 4.5rem;
+  place-items: center;
+  border: var(--border-strong) solid var(--color-ink);
+  border-radius: 50%;
+  background: var(--color-count);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.stepContent {
+  min-height: 17rem;
+  margin-top: var(--space-4);
+  padding: var(--space-6);
+  border-top: 0.35rem solid var(--color-balance);
+  background: var(--color-surface);
+  box-shadow: 0 0.25rem 1rem
+    color-mix(in srgb, var(--color-ink) 7%, transparent);
+}
+
+.stepContent h3 {
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.stepContent p:last-child {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.stepStatus {
+  min-height: 2.75rem;
+  color: var(--color-balance);
+}
+
+.partnerSection,
+.supportSection,
+.profilesSection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+}
+
+.partnerSection {
+  display: grid;
+  grid-template-columns: minmax(16rem, 0.7fr) minmax(0, 1.3fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+}
+
+.partnerHeading {
+  align-self: start;
+}
+
+.partnerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: var(--border-strong) solid var(--color-ink);
+  border-left: var(--border-thin) solid var(--color-line);
+}
+
+.partnerGrid article {
+  min-height: 16rem;
+  padding: var(--space-6);
+  border-right: var(--border-thin) solid var(--color-line);
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.partnerGrid span {
+  display: block;
+  margin-bottom: var(--space-8);
+  color: var(--color-beat);
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 750;
+}
+
+.partnerGrid h3 {
+  font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+.partnerGrid p {
+  margin-bottom: 0;
+  color: var(--color-text-muted);
+}
+
+.expectationsSection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.expectationsGrid {
+  display: grid;
+  grid-template-columns: minmax(17rem, 0.75fr) minmax(0, 1.25fr);
+  gap: clamp(var(--space-8), 8vw, var(--space-24));
+}
+
+.expectationsGrid ul {
+  display: grid;
+  gap: var(--space-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.expectationsGrid li {
+  position: relative;
+  padding: var(--space-4) var(--space-4) var(--space-4) 3.5rem;
+  border: var(--border-thin) solid
+    color-mix(in srgb, var(--color-paper) 45%, transparent);
+}
+
+.expectationsGrid li::before {
+  position: absolute;
+  top: var(--space-4);
+  left: var(--space-4);
+  color: var(--color-count);
+  content: "→";
+  font-weight: 800;
+}
+
+.supportGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+  margin: var(--space-12) 0 var(--space-8);
+}
+
+.supportGrid article {
+  padding: clamp(var(--space-6), 4vw, var(--space-12));
+  border-radius: var(--radius-card);
+  background: var(--color-info-surface);
+}
+
+.supportGrid article:last-child {
+  background: var(--color-count);
+}
+
+.supportGrid p {
+  margin-bottom: 0;
+}
+
+.profilesSection {
+  border-top: var(--border-strong) solid var(--color-ink);
+}
+
+.profileHeading {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(18rem, 1.1fr);
+  gap: clamp(var(--space-8), 7vw, var(--space-24));
+  margin-bottom: var(--space-12);
+}
+
+.standardList {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.standardList li {
+  padding: var(--space-3) 0 var(--space-3) var(--space-6);
+  border-bottom: var(--border-thin) solid var(--color-line);
+}
+
+.standardList li::before {
+  float: left;
+  margin-left: calc(var(--space-6) * -1);
+  color: var(--color-balance);
+  content: "✓";
+  font-weight: 800;
+}
+
+.profileGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.profileGrid article {
+  padding: var(--space-6);
+  border: var(--border-thin) solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.profileGrid article > p:first-child,
+.profileGrid small {
+  color: var(--color-text-muted);
+  font-size: var(--text-small);
+}
+
+.voiceSection {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(16rem, 0.75fr);
+  gap: var(--space-8);
+  align-items: center;
+  margin-bottom: clamp(var(--space-16), 9vw, var(--space-24));
+  padding: clamp(var(--space-8), 6vw, var(--space-16));
+  border: var(--border-strong) solid var(--color-balance);
+  border-radius: var(--radius-card);
+  background: var(--color-surface);
+}
+
+.voiceSection p:not(.kicker) {
+  max-width: var(--measure-copy);
+  margin-bottom: 0;
+}
+
+@media (max-width: 64rem) {
+  .pathway {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pathway::before {
+    display: none;
+  }
+}
+
+@media (max-width: 52rem) {
+  .hero,
+  .partnerSection,
+  .expectationsGrid,
+  .profileHeading,
+  .voiceSection {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 38rem) {
+  .pathway,
+  .partnerGrid,
+  .supportGrid,
+  .profileGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stepContent {
+    min-height: auto;
+  }
+
+  .stepStatus {
+    min-height: auto;
+  }
+}
+
+@media (forced-colors: active) {
+  .notTeam,
+  .stepMarker span,
+  .stepContent,
+  .partnerGrid article,
+  .supportGrid article,
+  .voiceSection {
+    border: var(--border-strong) solid CanvasText;
+  }
+}
