@@ -4,11 +4,12 @@
 (26 October 2026 IST)  
 **Environment:** Windows 10, Node `22.23.2`, npm `10.9.8`, Wrangler
 `4.152.0`  
-**Source identity:** branch `master` has no `HEAD`; every project file is
-untracked  
+**Source identity:** GitHub commit
+[`fff7068a23536ee6359f1d72a22227bacba2ed60`](https://github.com/ukexe/Measured-Momentum/commit/fff7068a23536ee6359f1d72a22227bacba2ed60).
+
 **Lockfile SHA-256:**
 `2674e566212f08c9cc28a926208e92046ebbbcfc177dfa930a372e29ae9feb7f`  
-**Final `out/` tree SHA-256:**
+**Tested local `out/` tree SHA-256:**
 `2e5a2b6589e4b6f84e9959152ab8240eb306430c055713aaa2b9b7f90a1c3ed7`
 across `149` regular files  
 **Decision:** engineering candidate verified; public release remains blocked by
@@ -16,9 +17,8 @@ external governance, legal, data and deployment approvals
 
 This report records the final successful runs and material failed attempts.
 It is not evidence of a production deployment, live database policy or legal
-approval. Because the repository has no commit, the workspace cannot yet be
-recreated or approved by immutable source identity; creating and reviewing an
-initial commit is a release blocker.
+approval. The validated workspace was subsequently committed and pushed
+without application-source changes.
 
 ## Automated gates
 
@@ -200,7 +200,7 @@ The following were not run:
 The code candidate is not approved for public launch until the accountable
 owners provide:
 
-- an initial reviewed commit and release tag that bind this evidence to source;
+- a reviewed release tag that binds approval to the source commit;
 - verified legal entity, website operator and data controller;
 - professional privacy/terms/retention/children’s-data review;
 - approved public name, domain and role-based contact;
@@ -211,5 +211,23 @@ owners provide:
 - monitoring, response, correction, deletion, backup and incident operations;
 - physical-device, assistive-technology and deployed performance smoke results.
 
-No DNS, domain, Cloudflare, Supabase, WRRC/WDSF or public deployment change was
+## Hosted preview addendum
+
+After the local gates above, commit `fff7068` was pushed to GitHub and deployed
+to:
+
+<https://measured-momentum-foundation.ukexe06.workers.dev/>
+
+- Cloudflare Worker version:
+  `20ea3c91-7ed1-43a7-94cb-b33be020b526`;
+- deployed static tree SHA-256:
+  `a154a2b6372ea813b547c0f3a8a8611ff0ecb0cd42fc86e8bf80ce60db21a376`;
+- the artifact uses the exact `workers.dev` canonical origin and staging
+  noindex/robots controls;
+- all 13 routes returned `200`, an unknown route returned `404`,
+  `/api/enquiries/status` returned `available: false`, and submission returned
+  fail-closed `503`.
+
+This is a public, non-indexed engineering preview—not production approval.
+No custom DNS/domain, Supabase, Turnstile, WRRC/WDSF or legal-status change was
 made.

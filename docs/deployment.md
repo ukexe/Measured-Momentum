@@ -30,8 +30,27 @@ Before any external deployment, approve and commit either:
 2. an equally explicit release record naming the separate config files,
    Worker names, routes/domains and account/profile used.
 
-Until then, staging and production deploy commands below are blocked. This
-documentation workstream does not alter that configuration or deploy anything.
+Until then, named staging and production deploy commands below are blocked.
+
+## Current hosted engineering preview
+
+Commit
+[`fff7068a23536ee6359f1d72a22227bacba2ed60`](https://github.com/ukexe/Measured-Momentum/commit/fff7068a23536ee6359f1d72a22227bacba2ed60)
+is hosted through the top-level Worker at:
+
+<https://measured-momentum-foundation.ukexe06.workers.dev/>
+
+- Cloudflare version: `20ea3c91-7ed1-43a7-94cb-b33be020b526`;
+- static tree SHA-256:
+  `a154a2b6372ea813b547c0f3a8a8611ff0ecb0cd42fc86e8bf80ce60db21a376`;
+- canonical URLs use the exact `workers.dev` origin;
+- staging metadata and `robots.txt` disallow indexing;
+- no Worker data-provider values or Turnstile secrets are configured;
+- the enquiry status is unavailable and POST fails closed with `503`.
+
+This public engineering preview is not an approved production environment. It
+has no custom domain, Cloudflare Access restriction, database persistence or
+operational enquiry handling.
 
 ## Release prerequisites
 
@@ -95,7 +114,9 @@ Staging requirements:
 
 The repository does not emit an environment-specific `X-Robots-Tag`, and
 `robots.txt` is not access control. Staging restriction is an external
-Cloudflare task and release blocker.
+Cloudflare task and release blocker. The current `workers.dev` preview contains
+only already-public proposal content and must not be used for private review
+material.
 
 Production requirements:
 

@@ -21,7 +21,8 @@ Supabase migration are present.
 
 The final clean-install local candidate passed formatting, lint, strict types,
 84 unit/component tests, 25 cross-browser tests, static export and Cloudflare
-packaging. No external deployment or database change was made.
+packaging. Commit `fff7068` is pushed to GitHub and a non-indexed Cloudflare
+engineering preview is deployed. No database change was made.
 
 Public launch is not approved. Legal identity, operator/controller, public
 name/domain/contact, founder records, affiliations, media rights, policy
@@ -239,16 +240,25 @@ The route sweep also recorded zero browser console errors, uncaught page
 errors and failed requests. Full evidence and failed-attempt history are in
 [`test-report.md`](test-report.md).
 
-Source caveat: branch `master` has no `HEAD`; all project files are untracked.
-The final static tree digest is
-`2e5a2b6589e4b6f84e9959152ab8240eb306430c055713aaa2b9b7f90a1c3ed7`,
-but no immutable source commit currently identifies the candidate.
+The validated source is GitHub commit
+[`fff7068a23536ee6359f1d72a22227bacba2ed60`](https://github.com/ukexe/Measured-Momentum/commit/fff7068a23536ee6359f1d72a22227bacba2ed60).
+The deployed static tree digest is
+`a154a2b6372ea813b547c0f3a8a8611ff0ecb0cd42fc86e8bf80ce60db21a376`.
 
 ## 13. Deployment instructions
 
-No deployment was made.
+An engineering preview is hosted at:
 
-1. Create and review the initial commit and release tag.
+<https://measured-momentum-foundation.ukexe06.workers.dev/>
+
+It is Cloudflare Worker version
+`20ea3c91-7ed1-43a7-94cb-b33be020b526`, uses the exact hosted canonical origin,
+and remains `noindex`. The enquiry capability is unavailable and submission
+fails closed with `503`.
+
+No custom-domain or approved production deployment was made. To progress:
+
+1. Review commit `fff7068` and create an approved release tag.
 2. Approve the legal operator, content, domain and environment ownership.
 3. Add explicit, isolated Cloudflare staging/production targets and bindings.
 4. Provision isolated Supabase resources, apply the migration and retain RLS/
@@ -339,7 +349,8 @@ The source limits and questions for Patrice/WRRC/WDSF are in
 
 ## 18. Known defects or limitations
 
-- There is no initial Git commit or reproducible source identity.
+- The public preview uses the top-level `workers.dev` Worker, not isolated
+  named staging/production targets or an approved custom domain.
 - The enquiry integration is intentionally unavailable without external
   configuration; no live row has been written or deleted.
 - There is no server-side enquiry idempotency/deduplication, notification or
@@ -362,10 +373,10 @@ External launch blockers remain material.
 
 ## 19. Recommended next steps
 
-1. Create the initial reviewed commit; rerun gates and bind evidence to its SHA.
+1. Review commit `fff7068`; rerun gates for an approved release tag.
 2. Obtain legal/governance answers and approve exact public claims.
 3. Approve the operator, policies, domain, contact and media/logo rights.
-4. Create isolated staging Cloudflare and Supabase environments.
+4. Create isolated named Cloudflare environments and Supabase resources.
 5. Apply/test the migration and configure the enquiry operations lifecycle.
 6. Run staging accessibility, physical-device, eligible-WebGL, security and
    five-sample performance checks.

@@ -8,6 +8,14 @@ Static-first website for a proposed initiative described as **Acrobatic Rock
 > authority, people, results, events, sponsors or official contact details are
 > claimed.
 
+**Hosted preview:** <https://measured-momentum-foundation.ukexe06.workers.dev/>
+
+**Source:** [ukexe/Measured-Momentum](https://github.com/ukexe/Measured-Momentum)
+
+The `workers.dev` preview is intentionally `noindex` and the enquiry service
+remains unavailable until its approved Supabase and operational controls are
+configured.
+
 ## Current implementation
 
 - Next.js 16 App Router statically exports all public information routes with
