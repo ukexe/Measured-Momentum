@@ -23,8 +23,9 @@ Vitest runs `tests/unit/**/*.test.{ts,tsx}` and
   success states;
 - Saath Rekha geometry, load policy, reduced-motion/unsupported fallback,
   viewport activation and pause state;
-- global stage deferral, reduced-motion and Save-Data fallback, route variant
-  and persistent pause state.
+- global stage deferral, reduced-motion, forced-colours and live Save-Data
+  fallback, route/quality variants, context/import failure, cleanup and
+  persistent pause state.
 
 These tests run Worker modules in the test JavaScript environment, not in a
 deployed Cloudflare account. The Saath Rekha shell and global-stage tests mock
@@ -41,13 +42,19 @@ profile. It covers:
 - keyboard open/Escape/focus restoration for mobile navigation;
 - real hard 404 behavior, including unpublished route sentinels removed by
   `postbuild`;
+- an opt-in (`RUN_WEBGL_E2E=1`) desktop-Chromium WebGL check through the
+  lower-quality viewport path, including action-labelled pause persistence;
+- light, static print presentation with decorative stage art suppressed where
+  the Playwright engine exposes print-media emulation;
 - unconfigured enquiry status (`200`, `available: false`) and submission
   (`503`);
 - unsupported API methods and unknown API paths.
 
-The browser suite deliberately uses reduced motion. It does not exercise the
-real WebGL enhancement, an enabled form, live Turnstile, Cloudflare rate-limit
-enforcement or Supabase.
+Route, overflow and axe sweeps deliberately use reduced motion. The
+hardware-sensitive desktop-Chromium scenario is skipped unless
+`RUN_WEBGL_E2E=1`; it is not representative hardware profiling and may be
+unsuitable for software-GPU CI runners. The suite does not exercise an enabled
+form, live Turnstile, Cloudflare rate-limit enforcement or Supabase.
 
 ## Command/evidence matrix
 
@@ -114,8 +121,9 @@ npm run artifact:digest
 - **Establishes:** built-output behavior through local Wrangler for the
   committed scenarios and installed browser engines.
 - **Does not establish:** actual Safari/iOS or Chrome/Android hardware,
-  assistive technology, eligible WebGL behavior, external bindings or deployed
-  headers/domains.
+  assistive technology, eligible WebGL behavior unless the explicit opt-in
+  scenario ran, representative WebGL performance, external bindings or
+  deployed headers/domains.
 
 For release evidence, ensure port 8787 is free and prevent a local stale server
 from being reused:

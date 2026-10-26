@@ -141,6 +141,109 @@ test("provides a branded hard 404 without deploying publication sentinels", asyn
   }
 });
 
+test("loads and pauses the eligible WebGL stage", async ({
+  page,
+}, testInfo) => {
+  test.skip(
+    testInfo.project.name !== "chromium" || process.env.RUN_WEBGL_E2E !== "1",
+    "Set RUN_WEBGL_E2E=1 for the hardware-sensitive desktop Chromium stage check.",
+  );
+  test.slow();
+  await page.emulateMedia({
+    forcedColors: "none",
+    reducedMotion: "no-preference",
+  });
+  await page.setViewportSize({ height: 800, width: 720 });
+  await page.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+
+    Object.defineProperty(HTMLCanvasElement.prototype, "getContext", {
+      configurable: true,
+      value(
+        this: HTMLCanvasElement,
+        contextId: string,
+        options?: { failIfMajorPerformanceCaveat?: boolean },
+      ) {
+        if (
+          contextId === "webgl2" &&
+          options?.failIfMajorPerformanceCaveat === true
+        ) {
+          return {
+            getExtension: (name: string) =>
+              name === "WEBGL_lose_context"
+                ? { loseContext: () => undefined }
+                : null,
+          };
+        }
+
+        return Reflect.apply(getContext, this, [contextId, options]);
+      },
+    });
+  });
+  await page.goto("/");
+
+  await expect(page.locator('html[data-stage="live"]')).toHaveCount(1, {
+    timeout: 12_000,
+  });
+  await expect(page.locator("canvas[aria-hidden='true']")).toHaveCount(1);
+
+  await page.getByRole("button", { name: "Pause motion" }).click();
+
+  await expect(
+    page.getByRole("button", { name: "Play motion" }),
+  ).not.toHaveAttribute("aria-pressed");
+  expect(
+    await page.evaluate(() => sessionStorage.getItem("saath-rekha-motion")),
+  ).toBe("paused");
+
+  await page.goto("about:blank", { timeout: 10_000, waitUntil: "commit" });
+});
+
+test("prints a light, static presentation without decorative stage art", async ({
+  page,
+}) => {
+  await page.emulateMedia({ media: "print", reducedMotion: "reduce" });
+  await page.goto("/");
+  test.skip(
+    !(await page.evaluate(() => matchMedia("print").matches)),
+    "This Playwright browser does not emulate print media.",
+  );
+
+  const printState = await page.evaluate(() => {
+    const heading = document.querySelector("h1");
+    const decorativeElements = Array.from(
+      document.querySelectorAll('canvas, [aria-hidden="true"]'),
+    );
+    const headingTransform = heading
+      ? getComputedStyle(heading).transform
+      : null;
+
+    return {
+      allDecorationsHidden: decorativeElements.every(
+        (element) => getComputedStyle(element).display === "none",
+      ),
+      bodyBackground: getComputedStyle(document.body).backgroundColor,
+      colorScheme: getComputedStyle(document.documentElement).colorScheme,
+      headingColor: heading ? getComputedStyle(heading).color : null,
+      headingTransformIsIdentity:
+        headingTransform === "none" ||
+        headingTransform === "matrix(1, 0, 0, 1, 0, 0)",
+      mainOverflow: getComputedStyle(
+        document.querySelector("main") as HTMLElement,
+      ).overflow,
+    };
+  });
+
+  expect(printState).toEqual({
+    allDecorationsHidden: true,
+    bodyBackground: "rgb(255, 255, 255)",
+    colorScheme: "light",
+    headingColor: "rgb(17, 17, 17)",
+    headingTransformIsIdentity: true,
+    mainOverflow: "visible",
+  });
+});
+
 test("opens and dismisses the keyboard-accessible mobile navigation", async ({
   page,
 }, testInfo) => {

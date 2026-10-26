@@ -157,12 +157,12 @@ void main() {
   float beatPhase = fract(uBeat);
   float sector = floor((angle + 3.14159265359) / sectorWidth);
 
-  float rings = gridLine(radius / 0.9, 1.3) * smoothstep(13.0, 1.6, radius);
+  float rings = gridLine(radius / 0.9, 1.3) * (1.0 - smoothstep(1.6, 13.0, radius));
   float spokes = gridLine(angle / sectorWidth, 1.1)
-    * smoothstep(9.5, 1.4, radius)
+    * (1.0 - smoothstep(1.4, 9.5, radius))
     * smoothstep(0.7, 2.4, radius);
   float activeSector = 1.0 - step(0.5, abs(sector - count));
-  float wash = activeSector * (1.0 - beatPhase) * smoothstep(6.5, 1.8, radius) * smoothstep(1.2, 2.2, radius);
+  float wash = activeSector * (1.0 - beatPhase) * (1.0 - smoothstep(1.8, 6.5, radius)) * smoothstep(1.2, 2.2, radius);
   float wave = beatPhase * 7.5;
   float pulse = exp(-abs(radius - wave) * 4.0) * (1.0 - beatPhase);
   float glow = exp(-radius * radius * 0.1);
@@ -179,7 +179,7 @@ void main() {
   colour += uPoolColourC * pool(point, uPoolC) * 0.5;
   colour = mix(colour, uBase, uDim * 0.5);
 
-  float alpha = smoothstep(17.0, 5.0, radius);
+  float alpha = 1.0 - smoothstep(5.0, 17.0, radius);
   gl_FragColor = vec4(colour, alpha);
   ${COLOURSPACE_CHUNK}
 }
@@ -241,7 +241,7 @@ void main() {
 
   vec3 away = point - uPointer;
   float pointerDistance = length(away);
-  point += (away / max(pointerDistance, 0.0001)) * smoothstep(2.8, 0.0, pointerDistance) * uPointerStrength;
+  point += (away / max(pointerDistance, 0.0001)) * (1.0 - smoothstep(0.0, 2.8, pointerDistance)) * uPointerStrength;
 
   vec4 viewPosition = modelViewMatrix * vec4(point, 1.0);
   gl_Position = projectionMatrix * viewPosition;
@@ -249,7 +249,7 @@ void main() {
   float size = mix(1.3, 4.4, aSeed.x * aSeed.x * aSeed.x);
   gl_PointSize = size * uPixelRatio * (14.0 / max(depth, 0.5));
   float twinkle = 0.55 + 0.45 * sin(uTime * (0.7 + aSeed.z * 2.2) + aSeed.y * 31.0);
-  vAlpha = twinkle * smoothstep(52.0, 9.0, depth) * smoothstep(0.4, 2.2, depth);
+  vAlpha = twinkle * (1.0 - smoothstep(9.0, 52.0, depth)) * smoothstep(0.4, 2.2, depth);
   vColour = aSeed.w < 0.5
     ? mix(uColourA, uColourB, aSeed.w * 2.0)
     : mix(uColourB, uColourC, aSeed.w * 2.0 - 1.0);
@@ -280,7 +280,7 @@ varying vec3 vColour;
 
 void main() {
   float distanceToCentre = length(gl_PointCoord - 0.5);
-  float core = smoothstep(0.5, 0.0, distanceToCentre);
+  float core = 1.0 - smoothstep(0.0, 0.5, distanceToCentre);
   float alpha = core * core * vAlpha;
   if (alpha < 0.004) discard;
   #ifdef USE_VERTEX_COLOUR

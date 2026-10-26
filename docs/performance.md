@@ -63,8 +63,10 @@ The final three-run profile for the dark-stage revamp recorded:
 The static SVG/CSS presentation remained visible throughout. The deferred
 Three/R3F chunk did not enter these retained five-second windows, so this
 evidence covers the critical fallback-first path rather than sustained GPU
-cost. Manual browser checks separately confirmed the eligible scene, route
-variant and pause control. Physical-device GPU profiling remains required.
+cost. An opt-in targeted Chromium browser check separately confirmed the
+eligible lower-quality scene and pause control on this host; component
+coverage confirms the route variant. Physical-device GPU profiling remains
+required.
 
 ## Post-remediation three-run medians
 

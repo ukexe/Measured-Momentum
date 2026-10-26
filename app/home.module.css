@@ -28,6 +28,22 @@
 }
 
 :is(
+  .disciplines,
+  .direction,
+  .objectives,
+  .pathway,
+  .founding,
+  .roadmap,
+  .evidence,
+  .news,
+  .participation,
+  .contact
+) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 50rem;
+}
+
+:is(
     .disciplines,
     .direction,
     .objectives,
@@ -362,13 +378,20 @@
 }
 
 .directionStatements article:first-child h3 {
-  background: var(
-    --gradient-signature,
-    linear-gradient(100deg, #ff6b86, #d9b878 50%, #d9f257)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-beat, #ff6b86);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .directionStatements article:first-child h3 {
+    background: var(
+      --gradient-signature,
+      linear-gradient(100deg, #ff6b86, #d9b878 50%, #d9f257)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .directionStatements article > p:last-child {
@@ -1901,11 +1924,63 @@
   .directionStatements article:first-child h3 {
     background: none;
     color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
   }
 
   .direction,
   .evidence {
     border-block: 2px solid CanvasText;
+  }
+
+  .disciplineCount,
+  .newsIndex,
+  .newsMeasure,
+  .direction::after,
+  .foundingMarker::before,
+  .objectiveList li::after,
+  .roadmapList::after,
+  .roadmapList .roadmapCurrent::after,
+  .audienceList li::before,
+  .contactGrid::before,
+  .footerTransition {
+    display: none;
+  }
+}
+
+@media print {
+  .home {
+    overflow: visible;
+    color: CanvasText;
+  }
+
+  :is(
+    .disciplines,
+    .direction,
+    .objectives,
+    .pathway,
+    .founding,
+    .roadmap,
+    .evidence,
+    .news,
+    .participation,
+    .contact
+  ) {
+    contain: none;
+    content-visibility: visible;
+    overflow: visible;
+  }
+
+  .objectivesHeading,
+  .roadmapHeading,
+  .evidenceHeading,
+  .participationHeading {
+    position: static;
+  }
+
+  .directionStatements article:first-child h3 {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
   }
 
   .disciplineCount,

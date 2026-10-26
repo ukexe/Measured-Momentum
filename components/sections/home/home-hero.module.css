@@ -204,13 +204,20 @@
 }
 
 .word[data-accent="true"] .wordInner {
-  background: var(
-    --gradient-signature,
-    linear-gradient(100deg, #ff6b86 0%, #d9b878 48%, #d9f257 100%)
-  );
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent-beat, #ff6b86);
+}
+
+@supports (background-clip: text) or (-webkit-background-clip: text) {
+  .word[data-accent="true"] .wordInner {
+    background: var(
+      --gradient-signature,
+      linear-gradient(100deg, #ff6b86 0%, #d9b878 48%, #d9f257 100%)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+  }
 }
 
 .mission {
@@ -475,11 +482,36 @@
   .word[data-accent="true"] .wordInner {
     background: none;
     color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
   }
 
   .statusPill,
   .nonClaim {
     border: 2px solid CanvasText;
+  }
+}
+
+@media print {
+  .hero {
+    min-height: auto;
+    overflow: visible;
+    color: CanvasText;
+  }
+
+  .hero::before,
+  .stageWindow,
+  .scrollCue {
+    display: none !important;
+  }
+
+  .grid {
+    padding-block: 2rem;
+  }
+
+  .word[data-accent="true"] .wordInner {
+    background: none;
+    color: CanvasText;
+    -webkit-text-fill-color: CanvasText;
   }
 }
 

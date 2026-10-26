@@ -165,6 +165,7 @@ export function StageBackdrop() {
   });
   const requestRenderRef = useRef<(() => void) | null>(null);
   const reducedMotion = useMedia("(prefers-reduced-motion: reduce)");
+  const forcedColors = useMedia("(forced-colors: active)");
   const coarse = useMedia("(pointer: coarse), (max-width: 48rem)");
   const saveData = useSaveData();
   const started = useDeferredStart();
@@ -175,7 +176,12 @@ export function StageBackdrop() {
   const [motion, setMotion] = useState({ paused: false, restored: false });
 
   useEffect(() => {
-    if (!started || reducedMotion !== false || saveData !== false) {
+    if (
+      !started ||
+      reducedMotion !== false ||
+      forcedColors !== false ||
+      saveData !== false
+    ) {
       return;
     }
 
@@ -189,7 +195,7 @@ export function StageBackdrop() {
     return () => {
       cancelled = true;
     };
-  }, [reducedMotion, saveData, started]);
+  }, [forcedColors, reducedMotion, saveData, started]);
 
   useEffect(() => {
     const update = () => setPageVisible(!document.hidden);
@@ -225,6 +231,7 @@ export function StageBackdrop() {
     started &&
     !failed &&
     reducedMotion === false &&
+    forcedColors === false &&
     saveData === false &&
     webGL2 === true;
   const live = mayLoad && ready;
@@ -232,6 +239,30 @@ export function StageBackdrop() {
     live && pageVisible && motion.restored && motion.paused === false;
 
   useEffect(() => {
+    if (mayLoad) {
+      return;
+    }
+
+    requestRenderRef.current = null;
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (!cancelled) {
+        setReady(false);
+      }
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [mayLoad]);
+
+  useEffect(() => {
+    if (coarse !== false) {
+      input.current.pointerX = 0;
+      input.current.pointerY = 0;
+      requestRenderRef.current?.();
+    }
+
     if (!mayLoad) {
       return;
     }
@@ -334,7 +365,6 @@ export function StageBackdrop() {
       </div>
       {live && motion.restored ? (
         <button
-          aria-pressed={motion.paused}
           className={styles.motionToggle}
           onClick={togglePaused}
           type="button"

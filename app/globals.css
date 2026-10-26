@@ -1514,20 +1514,69 @@ strong {
 }
 
 @media print {
+  :root {
+    --stage-0: #fff;
+    --stage-1: #fff;
+    --stage-2: #fff;
+    --stage-3: #fff;
+    --fg-strong: #111;
+    --fg: #111;
+    --fg-muted: #333;
+    --on-accent: #111;
+    --hairline: rgb(0 0 0 / 0.3);
+    --hairline-strong: rgb(0 0 0 / 0.55);
+    --glass: transparent;
+    --glass-strong: transparent;
+    --glass-blur: none;
+    --shadow-float: none;
+
+    color-scheme: light;
+  }
+
   .skip-link,
   .mobile-nav__trigger,
   .desktop-nav,
   .site-header__progress,
   .site-footer__horizon,
   .site-footer__count-rail,
-  .stage-backdrop {
+  .stage-backdrop,
+  canvas,
+  [aria-hidden="true"] {
     display: none !important;
   }
 
   html,
   body {
-    background: Canvas;
-    color: CanvasText;
+    min-width: 0;
+    min-height: auto;
+    overflow: visible !important;
+    background: #fff !important;
+    color: #111 !important;
+  }
+
+  body *,
+  body *::before,
+  body *::after {
+    animation: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #111 !important;
+    filter: none !important;
+    text-shadow: none !important;
+    transform: none !important;
+    transition: none !important;
+    translate: none !important;
+    -webkit-backdrop-filter: none !important;
+    -webkit-text-fill-color: #111 !important;
+    -webkit-text-stroke: 0 !important;
+    backdrop-filter: none !important;
+  }
+
+  body
+    :where(main, section, article, aside, header, footer, nav, div):not(
+      .visually-hidden
+    ) {
+    overflow: visible !important;
   }
 
   .site-header {
@@ -1563,12 +1612,13 @@ strong {
   .text-gradient,
   .site-footer__platform {
     background: none;
-    color: CanvasText;
-    -webkit-text-fill-color: CanvasText;
+    color: #111;
+    -webkit-text-fill-color: #111;
   }
 
   a {
     color: inherit;
+    text-decoration: underline;
   }
 }
 

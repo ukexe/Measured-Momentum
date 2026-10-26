@@ -109,9 +109,9 @@ submission validation.
 
 The static CSS presentation is always available and the homepage also mounts
 the paired-ribbon SVG. Three `0.186.1` and R3F `9.8.2` live in a lazy chunk
-loaded only after reduced-motion, Save-Data and WebGL2 checks pass, a
-3.5-second post-load grace period elapses and the browser offers an idle
-opportunity.
+loaded only after reduced-motion, forced-colours, Save-Data and WebGL2 checks
+pass, a 3.5-second post-load grace period elapses and the browser offers an
+idle opportunity.
 
 Use demand rendering, lower quality and a 20fps cap on mobile/coarse pointers,
 a 30fps cap otherwise, a persistent pause control, page-visibility checks,

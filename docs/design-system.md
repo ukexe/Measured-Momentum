@@ -133,8 +133,8 @@ implemented contract is:
   decorative, non-instructional description on the homepage;
 - Three/R3F in a separate lazy client chunk loaded only after a post-load
   grace period and idle opportunity;
-- no scene load under reduced motion, Save-Data, unsupported WebGL2 or a major
-  performance caveat;
+- no scene load under reduced motion, forced-colours mode, Save-Data,
+  unsupported WebGL2 or a major performance caveat;
 - demand rendering that stops page-hidden or session-paused, with offscreen
   stopping retained by the standalone duet;
 - lower quality and a 20fps cap for mobile/coarse-pointer contexts, with
