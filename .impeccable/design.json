@@ -1,0 +1,488 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-05T17:13:35.570Z",
+  "title": "Design System: Measured Momentum",
+  "extensions": {
+    "colorMeta": {
+      "stage-black": {
+        "role": "neutral",
+        "displayName": "Stage Black",
+        "canonical": "#05060a",
+        "tonalRamp": [
+          "oklch(15% 0.011 271.4)",
+          "oklch(27% 0.011 271.4)",
+          "oklch(39% 0.011 271.4)",
+          "oklch(51% 0.011 271.4)",
+          "oklch(63% 0.011 271.4)",
+          "oklch(75% 0.011 271.4)",
+          "oklch(87% 0.011 271.4)",
+          "oklch(95% 0.011 271.4)"
+        ]
+      },
+      "stage-ink": {
+        "role": "neutral",
+        "displayName": "Stage Ink",
+        "canonical": "#0a0c13",
+        "tonalRamp": [
+          "oklch(15% 0.015 272.2)",
+          "oklch(27% 0.015 272.2)",
+          "oklch(39% 0.015 272.2)",
+          "oklch(51% 0.015 272.2)",
+          "oklch(63% 0.015 272.2)",
+          "oklch(75% 0.015 272.2)",
+          "oklch(87% 0.015 272.2)",
+          "oklch(95% 0.015 272.2)"
+        ]
+      },
+      "stage-slate": {
+        "role": "neutral",
+        "displayName": "Stage Slate",
+        "canonical": "#11141e",
+        "tonalRamp": [
+          "oklch(15% 0.021 271.4)",
+          "oklch(27% 0.021 271.4)",
+          "oklch(39% 0.021 271.4)",
+          "oklch(51% 0.021 271.4)",
+          "oklch(63% 0.021 271.4)",
+          "oklch(75% 0.021 271.4)",
+          "oklch(87% 0.021 271.4)",
+          "oklch(95% 0.021 271.4)"
+        ]
+      },
+      "stage-raised": {
+        "role": "neutral",
+        "displayName": "Stage Raised",
+        "canonical": "#191d2a",
+        "tonalRamp": [
+          "oklch(15% 0.026 271.1)",
+          "oklch(27% 0.026 271.1)",
+          "oklch(39% 0.026 271.1)",
+          "oklch(51% 0.026 271.1)",
+          "oklch(63% 0.026 271.1)",
+          "oklch(75% 0.026 271.1)",
+          "oklch(87% 0.026 271.1)",
+          "oklch(95% 0.026 271.1)"
+        ]
+      },
+      "ivory-strong": {
+        "role": "neutral",
+        "displayName": "Strong Ivory",
+        "canonical": "#f7f1e6",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8)",
+          "oklch(27% 0.016 82.8)",
+          "oklch(39% 0.016 82.8)",
+          "oklch(51% 0.016 82.8)",
+          "oklch(63% 0.016 82.8)",
+          "oklch(75% 0.016 82.8)",
+          "oklch(87% 0.016 82.8)",
+          "oklch(95% 0.016 82.8)"
+        ]
+      },
+      "ivory-body": {
+        "role": "neutral",
+        "displayName": "Body Ivory",
+        "canonical": "#e2dbcd",
+        "tonalRamp": [
+          "oklch(15% 0.020 84.6)",
+          "oklch(27% 0.020 84.6)",
+          "oklch(39% 0.020 84.6)",
+          "oklch(51% 0.020 84.6)",
+          "oklch(63% 0.020 84.6)",
+          "oklch(75% 0.020 84.6)",
+          "oklch(87% 0.020 84.6)",
+          "oklch(95% 0.020 84.6)"
+        ]
+      },
+      "ivory-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ivory",
+        "canonical": "#aaa395",
+        "tonalRamp": [
+          "oklch(15% 0.021 84.6)",
+          "oklch(27% 0.021 84.6)",
+          "oklch(39% 0.021 84.6)",
+          "oklch(51% 0.021 84.6)",
+          "oklch(63% 0.021 84.6)",
+          "oklch(75% 0.021 84.6)",
+          "oklch(87% 0.021 84.6)",
+          "oklch(95% 0.021 84.6)"
+        ]
+      },
+      "registration-lime": {
+        "role": "primary",
+        "displayName": "Registration Lime",
+        "canonical": "#d9f257",
+        "tonalRamp": [
+          "oklch(15% 0.178 117.9)",
+          "oklch(27% 0.178 117.9)",
+          "oklch(39% 0.178 117.9)",
+          "oklch(51% 0.178 117.9)",
+          "oklch(63% 0.178 117.9)",
+          "oklch(75% 0.178 117.9)",
+          "oklch(87% 0.178 117.9)",
+          "oklch(95% 0.178 117.9)"
+        ]
+      },
+      "beat-pink": {
+        "role": "secondary",
+        "displayName": "Beat Pink",
+        "canonical": "#ff6b86",
+        "tonalRamp": [
+          "oklch(15% 0.181 11.7)",
+          "oklch(27% 0.181 11.7)",
+          "oklch(39% 0.181 11.7)",
+          "oklch(51% 0.181 11.7)",
+          "oklch(63% 0.181 11.7)",
+          "oklch(75% 0.181 11.7)",
+          "oklch(87% 0.181 11.7)",
+          "oklch(95% 0.181 11.7)"
+        ]
+      },
+      "balance-teal": {
+        "role": "secondary",
+        "displayName": "Balance Teal",
+        "canonical": "#45d6cc",
+        "tonalRamp": [
+          "oklch(15% 0.121 188.3)",
+          "oklch(27% 0.121 188.3)",
+          "oklch(39% 0.121 188.3)",
+          "oklch(51% 0.121 188.3)",
+          "oklch(63% 0.121 188.3)",
+          "oklch(75% 0.121 188.3)",
+          "oklch(87% 0.121 188.3)",
+          "oklch(95% 0.121 188.3)"
+        ]
+      },
+      "step-indigo": {
+        "role": "tertiary",
+        "displayName": "Step Indigo",
+        "canonical": "#9aaaff",
+        "tonalRamp": [
+          "oklch(15% 0.124 274.9)",
+          "oklch(27% 0.124 274.9)",
+          "oklch(39% 0.124 274.9)",
+          "oklch(51% 0.124 274.9)",
+          "oklch(63% 0.124 274.9)",
+          "oklch(75% 0.124 274.9)",
+          "oklch(87% 0.124 274.9)",
+          "oklch(95% 0.124 274.9)"
+        ]
+      },
+      "evidence-brass": {
+        "role": "tertiary",
+        "displayName": "Evidence Brass",
+        "canonical": "#d9b878",
+        "tonalRamp": [
+          "oklch(15% 0.090 83.2)",
+          "oklch(27% 0.090 83.2)",
+          "oklch(39% 0.090 83.2)",
+          "oklch(51% 0.090 83.2)",
+          "oklch(63% 0.090 83.2)",
+          "oklch(75% 0.090 83.2)",
+          "oklch(87% 0.090 83.2)",
+          "oklch(95% 0.090 83.2)"
+        ]
+      },
+      "hairline-soft": {
+        "role": "neutral",
+        "displayName": "Soft Hairline",
+        "canonical": "rgb(247 241 230 / 0.12)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8 / 0.12)",
+          "oklch(27% 0.016 82.8 / 0.12)",
+          "oklch(39% 0.016 82.8 / 0.12)",
+          "oklch(51% 0.016 82.8 / 0.12)",
+          "oklch(63% 0.016 82.8 / 0.12)",
+          "oklch(75% 0.016 82.8 / 0.12)",
+          "oklch(87% 0.016 82.8 / 0.12)",
+          "oklch(95% 0.016 82.8 / 0.12)"
+        ]
+      },
+      "hairline-strong": {
+        "role": "neutral",
+        "displayName": "Strong Hairline",
+        "canonical": "rgb(247 241 230 / 0.28)",
+        "tonalRamp": [
+          "oklch(15% 0.016 82.8 / 0.28)",
+          "oklch(27% 0.016 82.8 / 0.28)",
+          "oklch(39% 0.016 82.8 / 0.28)",
+          "oklch(51% 0.016 82.8 / 0.28)",
+          "oklch(63% 0.016 82.8 / 0.28)",
+          "oklch(75% 0.016 82.8 / 0.28)",
+          "oklch(87% 0.016 82.8 / 0.28)",
+          "oklch(95% 0.016 82.8 / 0.28)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Homepage thesis lines and the largest persuasive statement."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Major section entries and editorial transitions."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Plate titles, evidence headings, and compact section statements."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Editorial reading copy and institutional caveats."
+      },
+      "label": {
+        "displayName": "Evidence Label",
+        "purpose": "Registration rails, navigation, counts, status, and provenance."
+      }
+    },
+    "shadows": [
+      {
+        "name": "photographic-plate",
+        "value": "0 2rem 5rem rgb(0 0 0 / 0.32)",
+        "purpose": "Separates a performance frame from the stage without making it a floating card."
+      },
+      {
+        "name": "primary-control",
+        "value": "0.65rem 0.7rem 1.7rem rgb(0 0 0 / 0.28)",
+        "purpose": "Gives the solid lime action a physical printed-object quality."
+      },
+      {
+        "name": "primary-control-hover",
+        "value": "0.65rem 0.85rem 2rem rgb(0 0 0 / 0.38)",
+        "purpose": "Deepens the control shadow as it rises on hover."
+      },
+      {
+        "name": "editorial-float",
+        "value": "0.9rem 1.6rem 4.5rem rgb(0 0 0 / 0.46)",
+        "purpose": "Reserved for substantial overlays and legacy reading surfaces."
+      }
+    ],
+    "motion": [
+      {
+        "name": "feedback-instant",
+        "value": "120ms",
+        "purpose": "Direct color and text-decoration feedback."
+      },
+      {
+        "name": "reveal-short",
+        "value": "240ms",
+        "purpose": "Small control and navigation transitions."
+      },
+      {
+        "name": "panel-medium",
+        "value": "480ms",
+        "purpose": "Panel entrances and bounded structural changes."
+      },
+      {
+        "name": "expressive-long",
+        "value": "960ms",
+        "purpose": "Maximum duration for a foreground expressive sequence."
+      },
+      {
+        "name": "ease-enter",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Decelerating entrances, lifts, and registration shifts."
+      },
+      {
+        "name": "ease-exit",
+        "value": "cubic-bezier(0.7, 0, 0.84, 0)",
+        "purpose": "Accelerating departures."
+      },
+      {
+        "name": "ease-move",
+        "value": "cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "Slow image, count, and Saath Rekha movement."
+      },
+      {
+        "name": "contact-sheet-drift",
+        "value": "18s cubic-bezier(0.65, 0, 0.35, 1) both",
+        "purpose": "Bounded scale-and-crop drift on the first photographic plate."
+      },
+      {
+        "name": "registration-breathe",
+        "value": "9s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate",
+        "purpose": "Low-amplitude registration wash movement behind static content."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "navigation-collapse",
+        "value": "75rem"
+      },
+      {
+        "name": "wide-structure",
+        "value": "64rem"
+      },
+      {
+        "name": "editorial-stack",
+        "value": "56rem"
+      },
+      {
+        "name": "route-header-stack",
+        "value": "44rem"
+      },
+      {
+        "name": "compact",
+        "value": "36rem"
+      },
+      {
+        "name": "narrow-shell",
+        "value": "30rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The solid registration-lime action used for the clearest safe next step.",
+      "html": "<button class=\"ds-btn-primary\" type=\"button\">EXPLORE THE PROPOSAL</button>",
+      "css": ".ds-btn-primary { min-height: 3rem; padding: 0.9rem 1.25rem; border: 1px solid var(--accent-count, #d9f257); border-radius: 0; background: var(--accent-count, #d9f257); box-shadow: 0.65rem 0.7rem 1.7rem rgb(0 0 0 / 0.28); color: var(--on-accent, #0a0c13); cursor: pointer; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.07em; line-height: 1.2; text-transform: uppercase; transition: background-color 240ms, border-color 240ms, box-shadow 240ms, translate 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-primary:hover { border-color: #e6f986; background: #e6f986; box-shadow: 0.65rem 0.85rem 2rem rgb(0 0 0 / 0.38); translate: 0 -0.125rem; } .ds-btn-primary:active { translate: 0; } .ds-btn-primary:focus-visible { outline: 3px solid var(--accent-count, #d9f257); outline-offset: 3px; box-shadow: 0 0 0 3px var(--stage-0, #05060a); }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A ruled dark action for a legitimate alternate route.",
+      "html": "<button class=\"ds-btn-secondary\" type=\"button\">REGISTER INTEREST</button>",
+      "css": ".ds-btn-secondary { min-height: 3rem; padding: 0.9rem 1.25rem; border: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28)); border-radius: 0; background: rgb(5 6 10 / 0.72); color: var(--fg-strong, #f7f1e6); cursor: pointer; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.07em; line-height: 1.2; text-transform: uppercase; transition: background-color 240ms, border-color 240ms, color 240ms, translate 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-secondary:hover { border-color: var(--accent-balance, #45d6cc); background: var(--accent-balance, #45d6cc); color: var(--on-accent, #0a0c13); translate: 0 -0.125rem; } .ds-btn-secondary:active { translate: 0; } .ds-btn-secondary:focus-visible { outline: 3px solid var(--accent-count, #d9f257); outline-offset: 3px; box-shadow: 0 0 0 3px var(--stage-0, #05060a); }"
+    },
+    {
+      "name": "Quiet Button",
+      "kind": "button",
+      "refersTo": "button-quiet",
+      "description": "A transparent ruled action for lower-priority evidence and reading routes.",
+      "html": "<button class=\"ds-btn-quiet\" type=\"button\">REVIEW GOVERNANCE STATUS</button>",
+      "css": ".ds-btn-quiet { min-height: 3rem; padding: 0.9rem 1.25rem; border: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28)); border-radius: 0; background: transparent; color: var(--fg-strong, #f7f1e6); cursor: pointer; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.76rem; font-weight: 800; letter-spacing: 0.07em; line-height: 1.2; text-transform: uppercase; transition: border-color 240ms, color 240ms, translate 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-btn-quiet:hover { border-color: var(--accent-count, #d9f257); color: var(--accent-count, #d9f257); translate: 0 -0.125rem; } .ds-btn-quiet:active { translate: 0; } .ds-btn-quiet:focus-visible { outline: 3px solid var(--accent-count, #d9f257); outline-offset: 3px; box-shadow: 0 0 0 3px var(--stage-0, #05060a); }"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "text-field",
+      "description": "The dark editorial field used when a real, available form requires text input.",
+      "html": "<label class=\"ds-field\"><span class=\"ds-field-label\">AREA OF INTEREST</span><input type=\"text\" placeholder=\"Describe your interest\" /></label>",
+      "css": ".ds-field { display: grid; gap: 0.5rem; color: var(--fg-strong, #f7f1e6); font-family: var(--font-body, sans-serif); font-weight: 650; } .ds-field-label { font-size: 1rem; } .ds-field input { width: 100%; min-height: 3rem; padding: 0.75rem 0.9rem; border: 1px solid rgb(247 241 230 / 0.42); border-radius: 0.125rem; background: var(--stage-2, #11141e); color: var(--fg-strong, #f7f1e6); font: inherit; transition: background-color 200ms, border-color 200ms, box-shadow 200ms; } .ds-field input::placeholder { color: var(--fg-muted, #aaa395); opacity: 1; } .ds-field input:hover { border-color: rgb(247 241 230 / 0.62); } .ds-field input:focus-visible { border-color: var(--accent-count, #d9f257); outline: 2px solid var(--accent-count, #d9f257); outline-offset: 2px; background: var(--stage-3, #191d2a); box-shadow: 0 0 0 4px rgb(217 242 87 / 0.16); } .ds-field input[aria-invalid=\"true\"] { border-color: var(--accent-beat, #ff6b86); box-shadow: 0 0 0 1px var(--accent-beat, #ff6b86); }"
+    },
+    {
+      "name": "Desktop Navigation",
+      "kind": "nav",
+      "refersTo": "desktop-navigation",
+      "description": "Uppercase evidence-style route labels with one solid proposal action.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Preview navigation\"><a href=\"#\">DISCIPLINES</a><a href=\"#\">THE PROPOSAL +</a><a class=\"ds-nav-action\" href=\"#\">REGISTER INTEREST</a></nav>",
+      "css": ".ds-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0; padding: 0.65rem; border-bottom: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28)); background: rgb(5 6 10 / 0.9); font-family: var(--font-mono, ui-monospace, monospace); } .ds-nav a { position: relative; display: inline-flex; min-height: 2.5rem; align-items: center; padding: 0.5rem 0.78rem; color: var(--fg, #e2dbcd); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-decoration: none; text-transform: uppercase; transition: color 240ms; } .ds-nav a:not(.ds-nav-action)::after { position: absolute; right: 0.78rem; bottom: 0.35rem; left: 0.78rem; height: 1px; background: var(--accent-count, #d9f257); content: \"\"; transform: scaleX(0); transform-origin: left; transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-nav a:hover { color: var(--accent-count, #d9f257); } .ds-nav a:hover::after { transform: scaleX(1); } .ds-nav a:focus-visible { outline: 3px solid var(--accent-count, #d9f257); outline-offset: 3px; } .ds-nav .ds-nav-action { margin-left: 0.65rem; padding-inline: 1rem; background: var(--accent-count, #d9f257); box-shadow: 0.55rem 0.55rem 1.4rem rgb(0 0 0 / 0.24); color: var(--on-accent, #0a0c13); font-weight: 800; } .ds-nav .ds-nav-action:hover { background: #e6f986; color: var(--on-accent, #0a0c13); }"
+    },
+    {
+      "name": "Proposal Status Rail",
+      "kind": "custom",
+      "refersTo": "status-caption",
+      "description": "The mandatory global status field and its explanation route.",
+      "html": "<aside class=\"ds-status-rail\" aria-label=\"Proposal status\"><strong><span aria-hidden=\"true\"></span>PROPOSED ORGANISATION · IN DEVELOPMENT</strong><a href=\"#\">WHAT THAT MEANS</a></aside>",
+      "css": ".ds-status-rail { display: flex; min-height: 2.4rem; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 1rem; padding: 0 1rem; border-bottom: 1px solid rgb(10 12 19 / 0.8); background: var(--accent-count, #d9f257); color: var(--on-accent, #0a0c13); font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.69rem; font-weight: 800; letter-spacing: 0.11em; line-height: 1.4; text-transform: uppercase; } .ds-status-rail strong { display: inline-flex; align-items: center; gap: 0.75em; } .ds-status-rail strong span { width: 0.42rem; height: 0.42rem; border: 1px solid currentColor; } .ds-status-rail a { display: inline-flex; min-height: 2.4rem; align-items: center; color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.28em; } .ds-status-rail a:hover { text-decoration-thickness: 2px; } .ds-status-rail a:focus-visible { outline: 3px solid var(--stage-0, #05060a); outline-offset: -3px; }"
+    },
+    {
+      "name": "Route Page Header",
+      "kind": "custom",
+      "refersTo": "route-page-header",
+      "description": "A large condensed route title paired with a teal rule and vertical eight-count measure.",
+      "html": "<header class=\"ds-page-header\"><div><h1>Understand the proposal</h1><p>This route states what is proposed, what remains undecided, and what is not claimed.</p></div><div class=\"ds-page-measure\" aria-hidden=\"true\"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div></header>",
+      "css": ".ds-page-header { display: grid; grid-template-columns: minmax(0, 1fr) 2.25rem; gap: 1.5rem; padding: 5rem 0 3rem; border-bottom: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28)); background: var(--stage-1, #0a0c13); color: var(--fg, #e2dbcd); } .ds-page-header h1 { max-width: 12ch; margin: 0 0 3rem; color: var(--fg-strong, #f7f1e6); font-family: var(--font-display, \"Barlow Condensed\", sans-serif); font-size: clamp(3.5rem, 7vw, 6rem); font-weight: 800; letter-spacing: -0.04em; line-height: 0.86; } .ds-page-header p { max-width: 58ch; margin: 0; padding-top: 1.25rem; border-top: 1px solid var(--accent-balance, #45d6cc); font-size: 1.125rem; line-height: 1.55; } .ds-page-measure { display: grid; grid-template-rows: repeat(8, 1fr); border-block: 1px solid var(--hairline-soft, rgb(247 241 230 / 0.12)); color: var(--fg-muted, #aaa395); font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.62rem; } .ds-page-measure span { display: grid; place-items: center; border-bottom: 1px solid var(--hairline-soft, rgb(247 241 230 / 0.12)); } .ds-page-measure span:last-child { border-bottom: 0; color: var(--accent-count, #d9f257); }"
+    },
+    {
+      "name": "Performance Plate",
+      "kind": "card",
+      "refersTo": "performance-plate",
+      "description": "A supplied rehearsal image framed as evidence-bearing editorial media, not a generic card.",
+      "html": "<figure class=\"ds-performance-plate\"><div class=\"ds-performance-frame\"><img src=\"/media/performance/formation-wide.webp\" alt=\"\" /><span class=\"ds-performance-index\" aria-hidden=\"true\">MM</span></div><figcaption><strong>SUPPLIED REHEARSAL IMAGE</strong><span>Illustrative visual context only · no identity, result, representation or relationship is claimed</span></figcaption></figure>",
+      "css": ".ds-performance-plate { max-width: 42rem; margin: 0; color: var(--fg-muted, #aaa395); } .ds-performance-frame { position: relative; min-height: 22rem; overflow: hidden; border: 1px solid var(--hairline-strong, rgb(247 241 230 / 0.28)); background: var(--stage-0, #05060a); box-shadow: 0 2rem 5rem rgb(0 0 0 / 0.32); } .ds-performance-frame::before, .ds-performance-frame::after { position: absolute; z-index: 2; width: 1.25rem; height: 1.25rem; border-color: var(--accent-count, #d9f257); content: \"\"; pointer-events: none; } .ds-performance-frame::before { top: 0.7rem; left: 0.7rem; border-top: 1px solid; border-left: 1px solid; } .ds-performance-frame::after { right: 0.7rem; bottom: 0.7rem; border-right: 1px solid; border-bottom: 1px solid; } .ds-performance-frame img { width: 100%; height: 100%; min-height: 22rem; object-fit: cover; filter: grayscale(1) contrast(1.08); transition: filter 700ms cubic-bezier(0.16, 1, 0.3, 1), transform 900ms cubic-bezier(0.16, 1, 0.3, 1); } .ds-performance-frame:hover img { filter: grayscale(0.8) contrast(1.08) saturate(1.04); transform: scale(1.018); } .ds-performance-index { position: absolute; z-index: 2; top: 1rem; right: 1rem; padding: 0.35rem 0.5rem; background: var(--accent-count, #d9f257); color: var(--on-accent, #0a0c13); font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.6875rem; font-weight: 800; letter-spacing: 0.12em; } .ds-performance-plate figcaption { display: grid; grid-template-columns: minmax(7rem, 0.28fr) minmax(0, 1fr); gap: 1rem; padding-top: 0.8rem; font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.72rem; letter-spacing: 0.035em; line-height: 1.5; } .ds-performance-plate figcaption strong { color: var(--accent-count, #d9f257); font: inherit; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Evidence Ledger",
+      "kind": "custom",
+      "refersTo": "evidence-ledger",
+      "description": "Ruled definition-list rows that make current absences and non-claims inspectable.",
+      "html": "<dl class=\"ds-evidence-ledger\"><div><dt>PUBLIC IDENTITY</dt><dd><strong>Working descriptor only</strong><span>The descriptor is descriptive. No final legal name or institutional acronym is presented.</span></dd></div><div><dt>LEGAL AND ENTITY STATUS</dt><dd><strong>Not claimed</strong><span>No incorporation, registration, governing authority or membership body status is represented.</span></dd></div></dl>",
+      "css": ".ds-evidence-ledger { margin: 0; padding: 0 2rem; border: 1px solid var(--hairline-soft, rgb(247 241 230 / 0.12)); background: rgb(10 12 19 / 0.82); color: var(--fg, #e2dbcd); } .ds-evidence-ledger > div { display: grid; grid-template-columns: minmax(8rem, 1.2fr) minmax(0, 2.8fr); gap: 1.5rem; padding-block: 1.25rem; border-bottom: 1px solid var(--hairline-soft, rgb(247 241 230 / 0.12)); } .ds-evidence-ledger > div:last-child { border-bottom: 0; } .ds-evidence-ledger dt { color: var(--fg-muted, #aaa395); font-family: var(--font-mono, ui-monospace, monospace); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; line-height: 1.5; text-transform: uppercase; } .ds-evidence-ledger dd { display: grid; gap: 0.5rem; margin: 0; } .ds-evidence-ledger dd strong { color: var(--accent-count, #d9f257); font-family: var(--font-display, \"Barlow Condensed\", sans-serif); font-size: 1.15rem; font-weight: 800; } .ds-evidence-ledger dd span { font-family: var(--font-body, sans-serif); font-size: 1rem; line-height: 1.6; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Kinetic Contact Sheet",
+    "overview": "Measured Momentum is a dark theatrical sports editorial built from photographic emulsion, contact-sheet registration, and visible evidence. The shipped system turns the energy of Acrobatic Rock ’n’ Roll and Boogie Woogie into a persuasive sequence without presenting the proposal as an operating federation or programme. It records the finished transformation from concept seed `d8310e56`; the built artifact, including its final homepage review image, is the authority.\n\nThe world is premium because it is controlled rather than glossy. Warm-ivory type sits on near-black stages; supplied rehearsal photography arrives as full-bleed or deliberately offset plates; lime, pink, teal, indigo, and brass behave like registration inks, count marks, and evidence signals. Fine rules, crop marks, eight-count rails, and source-like captions provide structure. Controls are solid typographic objects. Essential meaning remains static and readable while Saath Rekha contributes only deferred, nonessential depth.",
+    "keyCharacteristics": [
+      "Near-black photographic emulsion with warm-ivory type.",
+      "Lime, pink, and teal registration marks, with indigo links and brass evidence cues.",
+      "Twelve-column editorial fields and recurring eight-count measurement rails.",
+      "Full-bleed or offset supplied performance plates with provenance captions.",
+      "Static-first meaning with deferred, decorative Saath Rekha depth."
+    ],
+    "rules": [
+      {
+        "name": "The Registration Ink Rule",
+        "body": "Bright colors appear as status fields, type accents, count marks, crop marks, rules, and bounded action slabs; they are not ambient decoration.",
+        "section": "colors"
+      },
+      {
+        "name": "The Truthful Status Rule",
+        "body": "Registration Lime may make the proposal status impossible to miss, but color never replaces the exact “Proposed organisation · In development” wording.",
+        "section": "colors"
+      },
+      {
+        "name": "The Accessible Pairing Rule",
+        "body": "State, validation, discipline, and selection always retain a textual, structural, or shape cue in addition to color.",
+        "section": "colors"
+      },
+      {
+        "name": "The Condensed Arena Rule",
+        "body": "Use Barlow Condensed for headlines and emphatic numerals, not for long-form body copy.",
+        "section": "typography"
+      },
+      {
+        "name": "The Metadata Is Evidence Rule",
+        "body": "Monospaced uppercase text is reserved for real status, count, navigation, measurement, and source information; never use it to invent an ornamental kicker.",
+        "section": "typography"
+      },
+      {
+        "name": "The Measured Field Rule",
+        "body": "Align persuasive surfaces to twelve columns and rhythmic metadata to eight counts; asymmetry is deliberate, but edges always register.",
+        "section": "layout"
+      },
+      {
+        "name": "The Photograph Is a Plate Rule",
+        "body": "Performance imagery is full-bleed or staggered and receives a source caption; it is never presented as an anonymous generic card gallery.",
+        "section": "layout"
+      },
+      {
+        "name": "The Plate, Not Card Rule",
+        "body": "Use overlap, crop, contrast, and one purposeful shadow to establish depth; do not wrap every idea in a glowing elevated card.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Fallback First Rule",
+        "body": "The photograph, HTML, and CSS composition must be complete before Saath Rekha loads; removing WebGL cannot remove meaning.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Registration Edge Rule",
+        "body": "Default to a square edge; round only when the shape expresses focus, orbit, partnership, or a native control affordance.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do keep “Proposed organisation · In development” visibly present in the global shell and pair visual status with exact explanatory language.",
+      "Do use self-hosted Barlow Condensed for high-impact display roles and system fonts for readable editorial copy.",
+      "Do treat supplied performance images as illustrative plates with truthful provenance and non-claim captions.",
+      "Do use lime, pink, teal, indigo, and brass as measured registration inks, preserving Strong or Body Ivory for sustained reading.",
+      "Do keep essential information in semantic HTML and preserve static, reduced-motion, forced-colors, print, and no-WebGL fallbacks.",
+      "Do keep editorial routes static-export compatible, trailing-slashed, and independent of request-time page data."
+    ],
+    "donts": [
+      "Don't imply legal status, recognition, affiliation, authority, people, results, events, sponsors, official contact details, or operating services without verified evidence and publication approval.",
+      "Don't turn the world into a generic dark sports landing page made from a centered slogan, decorative glass cards, anonymous statistics, or repeated ambient glows.",
+      "Don't use invented kickers, glyph icons, or monospaced labels as empty decoration; every metadata treatment must carry real status, count, navigation, measurement, or source information.",
+      "Don't make Saath Rekha essential, immediate, motion-dependent, or more visually authoritative than the proposal and its evidence.",
+      "Don't return visual or copy success for an enquiry unless durable, server-validated persistence and its controls are configured and verified."
+    ]
+  }
+}

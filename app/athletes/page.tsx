@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { PerformanceFigure } from "@/components/media/performance-figure";
 import { ButtonLink } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
@@ -48,6 +49,18 @@ export default function AthletesPage() {
           </p>
         </aside>
       </section>
+
+      <div className="container">
+        <PerformanceFigure
+          alt="A stage formation using layered positions and synchronized raised hands."
+          caption="Supplied performance imagery illustrates collective timing only. It does not depict a programme, official athlete roster, selection or relationship to this proposal."
+          className="editorial-plate editorial-plate--offset"
+          label="Formation / timing study"
+          objectPosition="50% 44%"
+          sizes="(max-width: 44rem) 100vw, 76vw"
+          src="/media/performance/formation-motion.webp"
+        />
+      </div>
 
       <section
         className={styles.pathwaySection}

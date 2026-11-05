@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { PerformanceFigure } from "@/components/media/performance-figure";
 import { ButtonLink } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import {
@@ -52,6 +53,18 @@ export default function AboutPage() {
           </p>
         </aside>
       </section>
+
+      <div className="container">
+        <PerformanceFigure
+          alt="A wide stage formation arranged in coordinated layers."
+          caption="Supplied performance imagery illustrates coordination only; it is not evidence of an operating programme, official team or relationship to this proposal."
+          className="editorial-plate editorial-plate--offset"
+          label="Visual context / formation"
+          objectPosition="50% 42%"
+          sizes="(max-width: 44rem) 100vw, 76vw"
+          src="/media/performance/formation-wide.webp"
+        />
+      </div>
 
       <section
         className={styles.statusSection}

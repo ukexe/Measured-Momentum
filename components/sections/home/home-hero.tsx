@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Fragment } from "react";
 
 import { KineticDuetFallback } from "@/components/three/kinetic-duet-fallback";
@@ -12,14 +13,17 @@ export function HomeHero() {
   return (
     <section className={styles.hero} aria-labelledby="home-title">
       <div className={styles.stageWindow} aria-hidden="true">
-        <div className={styles.beams}>
-          <span />
-          <span />
-          <span />
-        </div>
-        <div className={styles.floor} />
+        <Image
+          alt=""
+          className={styles.heroPhoto}
+          fill
+          priority
+          sizes="100vw"
+          src="/media/performance/hero-rehearsal.webp"
+        />
+        <div className={styles.photoWash} />
         <KineticDuetFallback
-          className={styles.poster}
+          className={styles.ribbonOverlay}
           discipline="rock-n-roll"
           palette={{
             brass: "#d9b878",
@@ -29,6 +33,12 @@ export function HomeHero() {
           }}
           showBadge={false}
         />
+      </div>
+
+      <div className={styles.registrationRail} aria-hidden="true">
+        <span>MM / 01</span>
+        <span>Rhythm · Partnership · Evidence</span>
+        <span>India / Proposal</span>
       </div>
 
       <div className={`container ${styles.grid}`}>
@@ -54,13 +64,15 @@ export function HomeHero() {
               </Fragment>
             ))}
           </h1>
-          <p className={styles.mission}>{homeHero.mission}</p>
-          <p className={styles.nonClaim}>{homeHero.nonClaim}</p>
-          <div className={styles.actions}>
-            <ButtonLink href="/about/">Explore the proposal</ButtonLink>
-            <ButtonLink href="/join/" variant="secondary">
-              Register interest
-            </ButtonLink>
+          <div className={styles.heroDetails}>
+            <p className={styles.mission}>{homeHero.mission}</p>
+            <p className={styles.nonClaim}>{homeHero.nonClaim}</p>
+            <div className={styles.actions}>
+              <ButtonLink href="/about/">Explore the proposal</ButtonLink>
+              <ButtonLink href="/join/" variant="secondary">
+                Register interest
+              </ButtonLink>
+            </div>
           </div>
         </div>
       </div>
@@ -72,7 +84,11 @@ export function HomeHero() {
           ))}
         </ol>
         <p className={styles.caption}>
-          Abstract counterbalance · decorative, not instructional
+          <strong>Supplied rehearsal image</strong>
+          <span>
+            Illustrative visual context only · no identity, result,
+            representation or relationship is claimed
+          </span>
         </p>
       </div>
       <div className={styles.scrollCue} aria-hidden="true">

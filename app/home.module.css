@@ -206,7 +206,7 @@
   font-size: clamp(7rem, 15vw, 13rem);
   font-weight: 800;
   font-variant-numeric: tabular-nums;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.04em;
   line-height: 0.8;
   text-shadow: 0 0 2.5rem
     color-mix(in srgb, var(--discipline-accent) 30%, transparent);
@@ -381,19 +381,6 @@
   color: var(--accent-beat, #ff6b86);
 }
 
-@supports (background-clip: text) or (-webkit-background-clip: text) {
-  .directionStatements article:first-child h3 {
-    background: var(
-      --gradient-signature,
-      linear-gradient(100deg, #ff6b86, #d9b878 50%, #d9f257)
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-fill-color: transparent;
-  }
-}
-
 .directionStatements article > p:last-child {
   max-width: 56ch;
   margin-bottom: 0;
@@ -557,8 +544,8 @@
   grid-column: 8 / -1;
   margin-bottom: 0;
   padding: var(--space-4);
-  border-left: 2px solid var(--accent-brass, #d9b878);
-  border-radius: 0 var(--radius-card) var(--radius-card) 0;
+  border-top: 1px solid var(--accent-brass, #d9b878);
+  border-radius: 0;
   background: rgb(217 184 120 / 0.09);
   color: var(--accent-brass, #d9b878);
 }
@@ -1140,7 +1127,7 @@
   font-family: var(--font-display);
   font-size: clamp(9rem, 28vw, 24rem);
   font-weight: 800;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.04em;
   line-height: 0.72;
   text-shadow: 0 0 4rem rgb(154 170 255 / 0.18);
   -webkit-text-stroke: 2px rgb(154 170 255 / 0.5);
@@ -2259,5 +2246,432 @@
 
   to {
     transform: scaleY(1);
+  }
+}
+
+/* Kinetic contact-sheet composition. */
+.home {
+  background:
+    linear-gradient(
+      90deg,
+      transparent calc(50% - 0.5px),
+      rgb(247 241 230 / 0.045) 50%,
+      transparent calc(50% + 0.5px)
+    ),
+    transparent;
+}
+
+.eyebrow,
+.eyebrowInverse {
+  gap: 0.7rem;
+  margin-bottom: 1.25rem;
+  color: var(--accent-count);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+}
+
+.eyebrow::before,
+.eyebrowInverse::before {
+  width: 0.65rem;
+  height: 0.65rem;
+  border: 1px solid currentcolor;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.disciplines {
+  gap: clamp(2.5rem, 5vw, 5rem) var(--space-6);
+  padding-block: clamp(2rem, 4vw, 3rem) clamp(6rem, 12vw, 11rem);
+}
+
+.sectionLead {
+  grid-column: 1 / span 8;
+}
+
+.sectionLead h2 {
+  max-width: 12ch;
+  font-size: clamp(2.75rem, 6vw, 5.75rem);
+  letter-spacing: -0.04em;
+  line-height: 0.94;
+}
+
+.disciplineMedia {
+  display: grid;
+  min-width: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-6);
+  align-items: end;
+  margin-block: 1rem clamp(1rem, 4vw, 4rem);
+}
+
+.disciplineMediaPrimary {
+  z-index: 1;
+  grid-column: 1 / span 9;
+}
+
+.disciplineMediaSecondary {
+  z-index: 2;
+  grid-column: 8 / -1;
+  margin-top: 14rem;
+  margin-left: -2rem;
+}
+
+.disciplineMediaPrimary > div {
+  min-height: clamp(27rem, 52vw, 47rem);
+}
+
+.disciplineMediaSecondary > div {
+  min-height: clamp(20rem, 31vw, 30rem);
+  border-color: var(--accent-beat);
+}
+
+.disciplineList {
+  gap: 0;
+  border-top: 1px solid var(--hairline-strong);
+  perspective: none;
+}
+
+.discipline {
+  min-height: 0;
+  padding: clamp(2rem, 4vw, 4rem);
+  border: 0;
+  border-right: 1px solid var(--hairline-strong);
+  border-radius: 0;
+  background: rgb(5 6 10 / 0.56);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+.discipline:last-child {
+  border-right: 0;
+}
+
+.discipline::before {
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--discipline-accent) 12%, transparent),
+    transparent 60%
+  );
+}
+
+.discipline::after {
+  right: auto;
+  left: 0;
+  width: 5rem;
+  height: 1px;
+  background: var(--discipline-accent);
+  box-shadow: none;
+}
+
+.discipline:hover {
+  border-color: var(--hairline-strong);
+  box-shadow: inset 0 1px 0 var(--discipline-accent);
+}
+
+.disciplineCount {
+  position: static;
+  z-index: auto;
+  margin-bottom: clamp(3rem, 7vw, 6rem);
+  color: color-mix(in srgb, var(--discipline-accent) 72%, var(--fg-strong));
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.8;
+  text-shadow: none;
+  -webkit-text-stroke: 0;
+}
+
+.direction {
+  padding-block: clamp(7rem, 14vw, 13rem);
+  background: rgb(5 6 10 / 0.78);
+}
+
+.direction::before {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--accent-beat),
+    var(--accent-brass),
+    var(--accent-count)
+  );
+  box-shadow: none;
+}
+
+.direction::after {
+  top: auto;
+  right: 0;
+  bottom: 0;
+  width: 42%;
+  border-radius: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0 calc(25% - 1px),
+    rgb(247 241 230 / 0.08) calc(25% - 1px) 25%
+  );
+  aspect-ratio: 1.4;
+  opacity: 0.7;
+}
+
+.directionStatements {
+  perspective: none;
+}
+
+.directionStatements article {
+  padding: clamp(2rem, 5vw, 5rem);
+  border-top: 1px solid var(--hairline-strong);
+  background: rgb(10 12 19 / 0.7);
+}
+
+.directionStatements article::before {
+  display: none;
+}
+
+.directionStatements article:last-child {
+  margin-top: 0;
+  border-top-color: var(--accent-balance);
+}
+
+.directionStatements article:first-child h3 {
+  background: none;
+  color: var(--accent-beat);
+  -webkit-text-fill-color: currentcolor;
+}
+
+.objectives {
+  gap: clamp(2rem, 5vw, 5rem) var(--space-6);
+  padding-block: clamp(7rem, 13vw, 12rem);
+}
+
+.objectivesHeading {
+  grid-column: 1 / span 4;
+}
+
+.objectivesBody {
+  display: grid;
+  min-width: 0;
+  grid-column: 5 / -1;
+  gap: clamp(3rem, 7vw, 6rem);
+}
+
+.objectivesMedia > div {
+  min-height: clamp(23rem, 40vw, 39rem);
+}
+
+.objectiveList {
+  grid-column: auto;
+  gap: 0;
+  border-top: 1px solid var(--hairline-strong);
+}
+
+.objectiveList li {
+  grid-template-columns: 4.5rem minmax(0, 1fr);
+  gap: 1rem;
+  padding-block: 1.35rem;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.objectiveList li::before,
+.objectiveList li::after {
+  display: none;
+}
+
+.objectiveCount {
+  width: auto;
+  justify-content: start;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  aspect-ratio: auto;
+}
+
+.objectiveList li > div {
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.pathway {
+  background:
+    linear-gradient(180deg, rgb(5 6 10 / 0.7), rgb(10 12 19 / 0.84)),
+    transparent;
+}
+
+.pathwayHeading > p:last-child {
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--accent-brass);
+  border-left: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.pathwaySteps {
+  gap: 0;
+}
+
+.pathwaySteps::before {
+  height: 1px;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.pathwaySteps li {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  border-right: 1px solid var(--hairline);
+}
+
+.pathwaySteps li:last-child {
+  border-right: 0;
+}
+
+.pathwaySteps li::after {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.pathwayCount {
+  border-radius: 0;
+  box-shadow: 0.65rem 0.65rem 1.5rem rgb(0 0 0 / 0.28);
+}
+
+.foundingMarker {
+  width: min(100%, 13rem);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 0;
+}
+
+.foundingMarker::before {
+  inset: 0.8rem;
+  border: 1px solid var(--accent-brass);
+  border-radius: 0;
+  background: transparent;
+  mask: none;
+}
+
+.foundingMarker::after {
+  display: none;
+}
+
+.foundingMarker span {
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--accent-brass);
+  font-size: clamp(4rem, 10vw, 8rem);
+  line-height: 1;
+}
+
+.heldRecord {
+  border-radius: 0;
+  background: rgb(10 12 19 / 0.82);
+  backdrop-filter: none;
+}
+
+.heldRecord::before {
+  height: 1px;
+  box-shadow: none;
+}
+
+.news,
+.contact {
+  border-radius: 0;
+}
+
+@media (max-width: 64rem) {
+  .sectionLead {
+    grid-column: 1 / -1;
+  }
+
+  .disciplineMediaPrimary {
+    grid-column: 1 / span 10;
+  }
+
+  .disciplineMediaSecondary {
+    grid-column: 7 / -1;
+    margin-top: 10rem;
+  }
+
+  .objectivesHeading,
+  .objectivesBody {
+    grid-column: 1 / -1;
+  }
+
+  .objectivesHeading {
+    position: static;
+  }
+}
+
+@media (max-width: 56rem) {
+  .disciplines {
+    padding-top: clamp(4rem, 10vw, 6rem);
+  }
+
+  .disciplineMedia {
+    display: block;
+  }
+
+  .disciplineMediaSecondary {
+    width: 82%;
+    margin: -2rem 0 0 auto;
+  }
+
+  .disciplineList {
+    grid-template-columns: 1fr;
+  }
+
+  .discipline,
+  .discipline:last-child {
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline-strong);
+  }
+
+  .directionStatements article,
+  .directionStatements article:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .pathwaySteps {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .pathwaySteps li:nth-child(2) {
+    border-right: 0;
+  }
+
+  .pathwaySteps li:nth-child(-n + 2) {
+    border-bottom: 1px solid var(--hairline);
+  }
+}
+
+@media (max-width: 36rem) {
+  .sectionLead h2 {
+    font-size: clamp(2.6rem, 13vw, 4rem);
+  }
+
+  .disciplineMediaSecondary {
+    width: 94%;
+  }
+
+  .pathwaySteps {
+    display: block;
+  }
+
+  .pathwaySteps li,
+  .pathwaySteps li:nth-child(2) {
+    padding-block: 1.5rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .pathwaySteps::before {
+    display: none;
   }
 }

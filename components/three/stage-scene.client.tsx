@@ -30,8 +30,13 @@ type Vec3 = readonly [number, number, number];
 const FLOOR_Y = -1.6;
 const ORB_COUNT = 8;
 const ORB_RADIUS = 4.4;
+const LOW_QUALITY_PARTICLE_COUNT = 2_200;
+const HIGH_QUALITY_PARTICLE_COUNT = 6_000;
+const LOW_QUALITY_REGISTRATION_ROWS = 20;
+const HIGH_QUALITY_REGISTRATION_ROWS = 56;
 const LOW_QUALITY_FRAME_INTERVAL_MS = 50;
 const HIGH_QUALITY_FRAME_INTERVAL_MS = 1000 / 30;
+const TAU = Math.PI * 2;
 
 const PALETTE = {
   void: "#06070c",
@@ -221,38 +226,92 @@ void main() {
 const PARTICLE_VERTEX = /* glsl */ `
 uniform float uPixelRatio;
 uniform float uPointerStrength;
+uniform float uBeat;
+uniform float uDim;
+uniform float uScroll;
 uniform float uTime;
 uniform vec3 uColourA;
 uniform vec3 uColourB;
 uniform vec3 uColourC;
 uniform vec3 uPointer;
+uniform vec3 uRegistrationColour;
 attribute vec4 aSeed;
 varying float vAlpha;
+varying float vCadence;
 varying vec3 vColour;
 
 void main() {
   vec3 point = position;
+  float cadence = 1.0 - step(0.0, aSeed.w);
+  float cadenceEnergy = 0.0;
+  float countAccent = 0.0;
   float radius = length(point.xz);
-  float swirl = uTime * (0.012 + 0.1 / (1.0 + radius * 0.3));
-  float cosine = cos(swirl);
-  float sine = sin(swirl);
-  point.xz = mat2(cosine, -sine, sine, cosine) * point.xz;
-  point.y += sin(uTime * (0.2 + aSeed.x * 0.3) + aSeed.y * 6.2831 + radius * 0.3) * (0.16 + aSeed.z * 0.3);
 
-  vec3 away = point - uPointer;
-  float pointerDistance = length(away);
-  point += (away / max(pointerDistance, 0.0001)) * (1.0 - smoothstep(0.0, 2.8, pointerDistance)) * uPointerStrength;
+  if (cadence > 0.5) {
+    float cadenceSlot = floor(abs(aSeed.w) * 8.0);
+    float activeSlot = mod(floor(uBeat), 8.0);
+    float slotDistance = abs(cadenceSlot - activeSlot);
+    slotDistance = min(slotDistance, 8.0 - slotDistance);
+    countAccent = 1.0 - smoothstep(0.0, 0.75, slotDistance);
+
+    float beatPhase = fract(uBeat);
+    float countPulse = pow(0.5 + 0.5 * cos(beatPhase * 6.28318530718), 3.0);
+    float depthPhase = fract(aSeed.z + uBeat * 0.08);
+    float depthAccent = 1.0 - smoothstep(0.0, 0.12, abs(depthPhase - 0.5));
+    cadenceEnergy = max(
+      countAccent * (0.45 + countPulse * 0.55),
+      depthAccent * 0.38
+    );
+
+    float registrationEnvelope = sin(clamp(uScroll, 0.0, 1.0) * 3.14159265359);
+    float side = step(3.5, cadenceSlot) * 2.0 - 1.0;
+    point.x += side * registrationEnvelope * (0.08 + aSeed.z * 0.14);
+    point.z += sin(uScroll * 6.28318530718 + aSeed.z * 3.14159265359) * 0.08;
+  } else {
+    float swirl = uTime * (0.012 + 0.1 / (1.0 + radius * 0.3));
+    float cosine = cos(swirl);
+    float sine = sin(swirl);
+    point.xz = mat2(cosine, -sine, sine, cosine) * point.xz;
+    point.y += sin(uTime * (0.2 + aSeed.x * 0.3) + aSeed.y * 6.2831 + radius * 0.3) * (0.16 + aSeed.z * 0.3);
+
+    vec3 away = point - uPointer;
+    float pointerDistance = length(away);
+    point += (away / max(pointerDistance, 0.0001)) * (1.0 - smoothstep(0.0, 2.8, pointerDistance)) * uPointerStrength;
+  }
 
   vec4 viewPosition = modelViewMatrix * vec4(point, 1.0);
   gl_Position = projectionMatrix * viewPosition;
   float depth = -viewPosition.z;
-  float size = mix(1.3, 4.4, aSeed.x * aSeed.x * aSeed.x);
-  gl_PointSize = size * uPixelRatio * (14.0 / max(depth, 0.5));
-  float twinkle = 0.55 + 0.45 * sin(uTime * (0.7 + aSeed.z * 2.2) + aSeed.y * 31.0);
-  vAlpha = twinkle * (1.0 - smoothstep(9.0, 52.0, depth)) * smoothstep(0.4, 2.2, depth);
-  vColour = aSeed.w < 0.5
-    ? mix(uColourA, uColourB, aSeed.w * 2.0)
-    : mix(uColourB, uColourC, aSeed.w * 2.0 - 1.0);
+
+  if (cadence > 0.5) {
+    gl_PointSize = clamp(
+      (3.4 + cadenceEnergy * 2.8) * uPixelRatio * (9.0 / max(depth, 1.0)),
+      1.5,
+      7.5
+    );
+    float depthVisibility =
+      (1.0 - smoothstep(24.0, 58.0, depth)) *
+      smoothstep(0.4, 2.2, depth);
+    vAlpha =
+      (0.16 + cadenceEnergy * 0.68) *
+      depthVisibility *
+      (1.0 - uDim * 0.52);
+    vCadence = 0.35 + cadenceEnergy * 0.65;
+    vColour = mix(
+      uRegistrationColour,
+      uColourB,
+      0.18 + countAccent * 0.42
+    );
+  } else {
+    float size = mix(1.3, 4.4, aSeed.x * aSeed.x * aSeed.x);
+    gl_PointSize = size * uPixelRatio * (14.0 / max(depth, 0.5));
+    float twinkle = 0.55 + 0.45 * sin(uTime * (0.7 + aSeed.z * 2.2) + aSeed.y * 31.0);
+    vAlpha = twinkle * (1.0 - smoothstep(9.0, 52.0, depth)) * smoothstep(0.4, 2.2, depth);
+    vCadence = 0.0;
+    vColour = aSeed.w < 0.5
+      ? mix(uColourA, uColourB, aSeed.w * 2.0)
+      : mix(uColourB, uColourC, aSeed.w * 2.0 - 1.0);
+  }
 }
 `;
 
@@ -275,20 +334,37 @@ const POINT_FRAGMENT = /* glsl */ `
 uniform vec3 uTint;
 varying float vAlpha;
 #ifdef USE_VERTEX_COLOUR
+varying float vCadence;
 varying vec3 vColour;
 #endif
 
 void main() {
   float distanceToCentre = length(gl_PointCoord - 0.5);
   float core = 1.0 - smoothstep(0.0, 0.5, distanceToCentre);
-  float alpha = core * core * vAlpha;
+  float shape = core * core;
+  #ifdef USE_VERTEX_COLOUR
+  if (vCadence > 0.01) {
+    float horizontal =
+      (1.0 - smoothstep(0.38, 0.49, abs(gl_PointCoord.x - 0.5))) *
+      (1.0 - smoothstep(0.06, 0.14, abs(gl_PointCoord.y - 0.5)));
+    float vertical =
+      (1.0 - smoothstep(0.06, 0.14, abs(gl_PointCoord.x - 0.5))) *
+      (1.0 - smoothstep(0.38, 0.49, abs(gl_PointCoord.y - 0.5)));
+    shape = mix(
+      horizontal,
+      max(horizontal, vertical),
+      smoothstep(0.72, 0.94, vCadence)
+    );
+  }
+  #endif
+  float alpha = shape * vAlpha;
   if (alpha < 0.004) discard;
   #ifdef USE_VERTEX_COLOUR
   vec3 colour = vColour;
   #else
   vec3 colour = uTint;
   #endif
-  gl_FragColor = vec4(colour * (0.65 + core), alpha);
+  gl_FragColor = vec4(colour * (0.65 + shape), alpha);
   ${COLOURSPACE_CHUNK}
 }
 `;
@@ -313,12 +389,29 @@ function createCurve(points: readonly Vec3[]) {
   );
 }
 
-function createParticleGeometry(count: number) {
+function createParticleGeometry(count: number, registrationRows: number) {
   const random = createRandom(0x5a7f13);
   const positions = new Float32Array(count * 3);
   const seeds = new Float32Array(count * 4);
+  const registrationCount = registrationRows * ORB_COUNT;
 
   for (let index = 0; index < count; index += 1) {
+    if (index < registrationCount) {
+      const row = Math.floor(index / ORB_COUNT);
+      const slot = index % ORB_COUNT;
+      const rowProgress =
+        registrationRows > 1 ? row / (registrationRows - 1) : 0;
+      const x = (slot - (ORB_COUNT - 1) / 2) * 1.82;
+      const z = THREE.MathUtils.lerp(8.5, -20, rowProgress);
+
+      positions.set([x, FLOOR_Y + 0.055, z], index * 3);
+      seeds.set(
+        [0.5, slot / (ORB_COUNT - 1), rowProgress, -(slot + 0.5) / ORB_COUNT],
+        index * 4,
+      );
+      continue;
+    }
+
     let x: number;
     let y: number;
     let z: number;
@@ -484,16 +577,23 @@ function createStageResources(lowQuality: boolean) {
       }),
   );
 
-  const particleGeometry = createParticleGeometry(lowQuality ? 2600 : 7000);
+  const particleGeometry = createParticleGeometry(
+    lowQuality ? LOW_QUALITY_PARTICLE_COUNT : HIGH_QUALITY_PARTICLE_COUNT,
+    lowQuality ? LOW_QUALITY_REGISTRATION_ROWS : HIGH_QUALITY_REGISTRATION_ROWS,
+  );
   const particleMaterial = createPointMaterial(
     PARTICLE_VERTEX,
     {
+      uBeat: { value: 0 },
       uColourA: { value: new THREE.Color(PALETTE.lime) },
       uColourB: { value: new THREE.Color(PALETTE.step) },
       uColourC: { value: new THREE.Color(PALETTE.coral) },
+      uDim: { value: 0 },
       uPixelRatio: { value: pixelRatio },
       uPointer: { value: new THREE.Vector3(0, 100, 0) },
       uPointerStrength: { value: lowQuality ? 0 : 1.1 },
+      uRegistrationColour: { value: new THREE.Color(PALETTE.brass) },
+      uScroll: { value: 0 },
       uTime: { value: 0 },
     },
     true,
@@ -707,42 +807,61 @@ function StageWorld({
     }
 
     const time = timing.time;
-    const beat = timing.phase * 8;
+    const baseAngle = timing.phase * TAU;
+    const choreographyPhase =
+      (timing.phase +
+        Math.sin(baseAngle * 2) * 0.009 +
+        Math.sin(baseAngle * 4 + 0.45) * 0.003 +
+        1) %
+      1;
+    const phraseAngle = choreographyPhase * TAU;
+    const beat = choreographyPhase * ORB_COUNT;
     const count = Math.floor(beat) % ORB_COUNT;
     const beatPhase = beat - Math.floor(beat);
+    const countPulse = Math.pow(0.5 + 0.5 * Math.cos(beatPhase * TAU), 3);
     const { hero, pointerX, pointerY, scroll } = input.current;
     const home = variant === "home";
     const dim = home ? THREE.MathUtils.clamp(hero * 0.85, 0, 1) : 0.8;
+    const scrollProgress = THREE.MathUtils.clamp(scroll, 0, 1);
 
     writeKineticRibbonFrame(
       resources.ribbonA.buffers,
-      timing.phase,
+      choreographyPhase,
       -1,
       "rock-n-roll",
       resources.ribbonA.scratch,
     );
     writeKineticRibbonFrame(
       resources.ribbonB.buffers,
-      timing.phase,
+      choreographyPhase,
       1,
       "rock-n-roll",
       resources.ribbonB.scratch,
     );
-    writeKineticSpanFrame(resources.spanPositions, timing.phase, "rock-n-roll");
+    writeKineticSpanFrame(
+      resources.spanPositions,
+      choreographyPhase,
+      "rock-n-roll",
+    );
     resources.ribbonA.positionAttribute.needsUpdate = true;
     resources.ribbonA.normalAttribute.needsUpdate = true;
     resources.ribbonB.positionAttribute.needsUpdate = true;
     resources.ribbonB.normalAttribute.needsUpdate = true;
     resources.spanAttribute.needsUpdate = true;
 
-    const ribbonGlow = (0.95 + (1 - beatPhase) * 0.55) * (1 - dim * 0.4);
+    const ribbonGlow = (0.95 + countPulse * 0.55) * (1 - dim * 0.4);
     resources.ribbonA.material.emissiveIntensity = ribbonGlow;
     resources.ribbonB.material.emissiveIntensity = ribbonGlow;
+    resources.spanMaterial.opacity =
+      (0.36 + countPulse * 0.28) * (1 - dim * 0.35);
 
     const floorUniforms = resources.floorMaterial.uniforms;
     floorUniforms.uTime!.value = time;
     floorUniforms.uBeat!.value = beat;
     floorUniforms.uDim!.value = dim;
+    resources.particleMaterial.uniforms.uBeat!.value = beat;
+    resources.particleMaterial.uniforms.uDim!.value = dim;
+    resources.particleMaterial.uniforms.uScroll!.value = scrollProgress;
     resources.particleMaterial.uniforms.uTime!.value = time;
     resources.sparkMaterialA.uniforms.uTime!.value = time;
     resources.sparkMaterialB.uniforms.uTime!.value = time;
@@ -752,19 +871,26 @@ function StageWorld({
     if (home) {
       const curves =
         aspect < 0.95 ? resources.curves.tall : resources.curves.wide;
-      const progress = THREE.MathUtils.clamp(scroll, 0, 1);
-      curves.position.getPoint(progress, scratch.position);
-      curves.target.getPoint(progress, scratch.target);
+      curves.position.getPoint(scrollProgress, scratch.position);
+      curves.target.getPoint(scrollProgress, scratch.target);
     } else {
-      const angle = time * 0.035 + scroll * 1.4 + 0.6;
+      const angle = time * 0.035 + scrollProgress * 1.4 + 0.6;
       const radius = aspect < 0.95 ? 17 : 13.5;
       scratch.position.set(
         Math.sin(angle) * radius,
-        3.8 + scroll * 3,
+        3.8 + scrollProgress * 3,
         Math.cos(angle) * radius,
       );
       scratch.target.set(0, -0.2, 0);
     }
+
+    const cameraEnergy =
+      (home ? 1 - dim * 0.7 : 0.38) * (lowQuality ? 0.68 : 1);
+    scratch.position.x += Math.sin(phraseAngle) * 0.16 * cameraEnergy;
+    scratch.position.y += Math.sin(phraseAngle * 2 + 0.7) * 0.08 * cameraEnergy;
+    scratch.position.z += Math.cos(phraseAngle) * 0.12 * cameraEnergy;
+    scratch.target.x += Math.sin(phraseAngle + 0.9) * 0.1 * cameraEnergy;
+    scratch.target.y += Math.sin(phraseAngle * 2) * 0.055 * cameraEnergy;
 
     scratch.position.x += pointerX * 0.75;
     scratch.position.y += pointerY * 0.45;
@@ -812,6 +938,11 @@ function StageWorld({
       timing.settled = true;
     }
     camera.lookAt(lookTarget.current);
+    camera.rotateZ(
+      Math.sin(phraseAngle - scrollProgress * 0.5) *
+        THREE.MathUtils.degToRad(0.5) *
+        cameraEnergy,
+    );
 
     scratch.pointer.set(pointerX, pointerY, 0.5).unproject(camera);
     scratch.direction.copy(scratch.pointer).sub(camera.position).normalize();
@@ -861,7 +992,7 @@ function StageWorld({
         return;
       }
 
-      const energy = index === count ? 1 - beatPhase * 0.75 : 0.08;
+      const energy = index === count ? 0.22 + countPulse * 0.78 : 0.08;
       orb.scale.setScalar(0.8 + energy * 0.9);
       orb.position.y = FLOOR_Y + 0.2 + energy * 0.25;
       material.emissiveIntensity = 0.35 + energy * 3.4;
@@ -883,10 +1014,18 @@ function StageWorld({
       duet.current.rotation.x = active
         ? THREE.MathUtils.damp(duet.current.rotation.x, pitch, 4, step)
         : pitch;
-      duet.current.position.y = Math.sin(time * 0.8) * 0.06;
+      const roll =
+        Math.sin(phraseAngle) *
+        THREE.MathUtils.degToRad(1.15) *
+        (1 - dim * 0.7);
+      duet.current.rotation.z = active
+        ? THREE.MathUtils.damp(duet.current.rotation.z, roll, 3.2, step)
+        : roll;
+      duet.current.position.y =
+        Math.sin(phraseAngle * 2) * 0.035 + (countPulse - 0.5) * 0.025;
     }
 
-    const pulse = (1 - beatPhase) * (1 - dim * 0.6);
+    const pulse = countPulse * (1 - dim * 0.6);
     if (rimA.current) {
       rimA.current.intensity = 6 + pulse * 10;
     }

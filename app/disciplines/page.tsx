@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { PerformanceFigure } from "@/components/media/performance-figure";
 import { ButtonLink } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import {
@@ -33,6 +34,18 @@ export default function DisciplinesPage() {
           <p>{disciplineOrientation.description}</p>
         </aside>
       </section>
+
+      <div className="container">
+        <PerformanceFigure
+          alt="Two dance partners sharing an expressive performance moment."
+          caption="A supplied partner-performance detail used as visual orientation only. Identity, event, result and proposal relationship are not claimed."
+          className="editorial-plate editorial-plate--wide"
+          label="Partner movement / visual context"
+          objectPosition="52% 44%"
+          sizes="(max-width: 44rem) 100vw, 92vw"
+          src="/media/performance/partner-detail.webp"
+        />
+      </div>
 
       <nav className={styles.jumpNav} aria-label="On this page">
         <div className="container">

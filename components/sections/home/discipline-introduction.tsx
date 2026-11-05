@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { PerformanceFigure } from "@/components/media/performance-figure";
 import { homeDisciplines } from "@/content/home";
 
 import styles from "@/app/home.module.css";
@@ -21,6 +22,27 @@ export function DisciplineIntroduction() {
           orientation, not an assumption.
         </p>
       </header>
+
+      <div className={styles.disciplineMedia}>
+        <PerformanceFigure
+          alt="A stage formation using layered positions and synchronized raised hands."
+          caption="Supplied performance imagery is used for visual context only. No person shown is represented as part of this proposal."
+          className={styles.disciplineMediaPrimary}
+          label="Formation study"
+          objectPosition="50% 44%"
+          sizes="(max-width: 56rem) 100vw, 66vw"
+          src="/media/performance/formation-motion.webp"
+        />
+        <PerformanceFigure
+          alt="Two dance partners sharing an expressive close performance moment."
+          caption="Partnership and expression, without an identity, event, result or relationship claim."
+          className={styles.disciplineMediaSecondary}
+          label="Partner detail"
+          objectPosition="52% 44%"
+          sizes="(max-width: 56rem) 88vw, 28vw"
+          src="/media/performance/partner-detail.webp"
+        />
+      </div>
 
       <div className={styles.disciplineList}>
         {homeDisciplines.map((discipline) => (
