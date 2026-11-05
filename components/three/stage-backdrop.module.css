@@ -83,6 +83,24 @@
   outline-offset: 3px;
 }
 
+@media (max-width: 48rem) {
+  .motionToggle {
+    right: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
+    left: auto;
+    width: 2.75rem;
+    justify-content: center;
+    padding: 0;
+    border-radius: 50%;
+    background: var(--stage-1, #0a0c13);
+    backdrop-filter: none;
+  }
+
+  .motionToggle span {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: scroll()) {
     .backdrop[data-variant="home"] .scrim::after {

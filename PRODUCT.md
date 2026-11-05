@@ -64,6 +64,8 @@ content is repository-owned and statically exported.
 - Canonical governance and evidence rules under `docs/`.
 - Preserved research/design evidence under `docs/drafts/`, which is not public
   copy.
+- Supplementary handwritten organisational terminology under `docs/drafts/`;
+  unresolved classes and annotations remain research-only until sourced.
 - Fifteen supplied performance and training photographs under
   `womensformation/`. They may be used as illustrative imagery only; no
   identity, result, representation, event relationship, or proposal membership

@@ -42,23 +42,23 @@ export const homeDirection = {
 export const athleteDevelopmentObjectives = [
   {
     count: "01",
-    title: "Orient before asking for commitment",
-    body: "Publish clear, sourced introductions so prospective participants can understand the disciplines, their demands and the limits of the information available.",
+    title: "Start with the whole person",
+    body: "Help prospective participants understand the disciplines, their own goals and the physical, practical and welfare questions that should shape any responsible next step.",
   },
   {
     count: "02",
-    title: "Put welfare into the pathway",
-    body: "Explore age-aware, experience-aware progression only alongside safeguarding, qualified supervision, conditioning and appropriate practice environments.",
+    title: "Sequence development over time",
+    body: "Explore a long-term progression from rhythm, movement and conditioning foundations toward discipline-specific practice only when suitable coaching and environments exist.",
   },
   {
     count: "03",
-    title: "Make athlete voice structural",
-    body: "Develop consent, feedback and representation principles before presenting any person as part of a programme, roster or decision process.",
+    title: "Build coaching and partnership around progress",
+    body: "Treat coach competence, partner communication, shared goals, consent and feedback as part of development—not as assumptions made after technical work begins.",
   },
   {
     count: "04",
-    title: "Separate learning from status",
-    body: "Describe competencies and development needs without implying accreditation, selection, ranking, membership or a national pathway.",
+    title: "Put welfare before status",
+    body: "Make safe progression, safeguarding, recovery and athlete voice prerequisites while keeping learning separate from accreditation, selection, ranking or representative status.",
   },
 ] as const;
 

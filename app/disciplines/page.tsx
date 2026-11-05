@@ -4,9 +4,11 @@ import { PerformanceFigure } from "@/components/media/performance-figure";
 import { ButtonLink } from "@/components/ui/button";
 import { PageHeader } from "@/components/ui/page-header";
 import {
+  acrobaticRockNRollFormatSignals,
   disciplineOrientation,
   disciplines,
   disciplinesMetadata,
+  relatedDisciplineScope,
   ruleSources,
   safetyBoundary,
   sharedFoundations,
@@ -57,6 +59,12 @@ export default function DisciplinesPage() {
               </li>
             ))}
             <li>
+              <a href="#arr-formats">Potential ARR formats</a>
+            </li>
+            <li>
+              <a href="#related-disciplines">Related disciplines</a>
+            </li>
+            <li>
               <a href="#safety">Safety boundary</a>
             </li>
             <li>
@@ -105,6 +113,93 @@ export default function DisciplinesPage() {
             </div>
           </article>
         ))}
+      </section>
+
+      <section
+        className={`container ${styles.formatSection}`}
+        id="arr-formats"
+        aria-labelledby="arr-formats-title"
+      >
+        <header className={styles.formatHeading}>
+          <h2 id="arr-formats-title">
+            Potential ARR formats, held as questions
+          </h2>
+          <p>
+            Two phrases in the supplementary notes may point to participation or
+            competition formats. They are published here as research signals—not
+            adopted categories, eligibility rules or available services.
+          </p>
+        </header>
+
+        <div className={styles.formatBody}>
+          <PerformanceFigure
+            alt="A large stage formation arranged in coordinated lines."
+            caption="A supplied formation image provides visual context only. It does not verify a category, event, team, eligibility rule or relationship to this proposal."
+            className={styles.formatMedia}
+            label="Formation / illustrative context"
+            objectPosition="50% 46%"
+            sizes="(max-width: 52rem) 100vw, 42vw"
+            src="/media/performance/formation-wide.webp"
+          />
+
+          <div className={styles.formatResearch}>
+            <p className={styles.researchStatus}>
+              Source status · supplementary handwritten note
+            </p>
+            <dl className={styles.formatList}>
+              {acrobaticRockNRollFormatSignals.map((format) => (
+                <div key={format.term}>
+                  <dt>{format.term}</dt>
+                  <dd>
+                    <strong>{format.status}</strong>
+                    <p>{format.interpretation}</p>
+                    <p>{format.boundary}</p>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <section
+        className={styles.scopeSection}
+        id="related-disciplines"
+        aria-labelledby="related-disciplines-title"
+      >
+        <div className="container">
+          <header className={styles.scopeHeading}>
+            <h2 id="related-disciplines-title">
+              A wider dance map without widening the claim
+            </h2>
+            <p>
+              The notes place four dance terms together. The public project
+              scope remains Acrobatic Rock ’n’ Roll and Boogie Woogie; the
+              additional terms are retained only as exploratory context.
+            </p>
+          </header>
+
+          <ul className={styles.scopeLedger}>
+            {relatedDisciplineScope.map((discipline) => (
+              <li data-scope={discipline.scope} key={discipline.name}>
+                <p className={styles.scopeStatus}>{discipline.status}</p>
+                <div>
+                  <h3>{discipline.name}</h3>
+                  <p className={styles.noteReference}>
+                    {discipline.noteReference}
+                  </p>
+                </div>
+                <p>{discipline.description}</p>
+              </li>
+            ))}
+          </ul>
+
+          <p className={styles.scopeBoundary}>
+            Exploratory context does not create an offer, governing remit,
+            membership pathway, event category or commitment to expand the
+            proposal.
+          </p>
+        </div>
       </section>
 
       <section

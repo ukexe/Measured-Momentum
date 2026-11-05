@@ -83,6 +83,60 @@ export const disciplines: readonly DisciplineOverview[] = [
   },
 ] as const;
 
+export const acrobaticRockNRollFormatSignals = [
+  {
+    term: "Men & Women",
+    status: "Terminology to verify",
+    interpretation:
+      "A potential paired-participation or competition-format label identified in the supplementary handwritten notes.",
+    boundary:
+      "The note does not define partnership composition, age, eligibility, class, rule owner or availability. The wording also needs an inclusion and terminology review.",
+  },
+  {
+    term: "Women’s Formation",
+    status: "Terminology to verify",
+    interpretation:
+      "A potential team or formation format involving women, retained as a direction for structured research.",
+    boundary:
+      "Team size, age, technical requirements, competition status and any relationship to this proposal remain unestablished.",
+  },
+] as const;
+
+export const relatedDisciplineScope = [
+  {
+    name: "Acrobatic Rock ’n’ Roll",
+    noteReference: "Rock ’n’ Roll in the notes",
+    status: "Current project scope",
+    scope: "current",
+    description:
+      "One of the two disciplines named in the working public descriptor. The site provides orientation only; it does not operate a programme or competition system.",
+  },
+  {
+    name: "Boogie Woogie",
+    noteReference: "Named in the notes",
+    status: "Current project scope",
+    scope: "current",
+    description:
+      "One of the two disciplines named in the working public descriptor, presented with the same proposal and non-service boundaries.",
+  },
+  {
+    name: "Lindy Hop",
+    noteReference: "Supplementary reference",
+    status: "Exploratory context",
+    scope: "exploratory",
+    description:
+      "A related dance reference in the handwritten notes. No programme, governance remit, competition pathway or expansion decision is claimed.",
+  },
+  {
+    name: "Freestyle",
+    noteReference: "Meaning still unresolved",
+    status: "Exploratory context",
+    scope: "exploratory",
+    description:
+      "The term appears without a definition or rule context. It remains a research prompt rather than a discipline offered or governed by this proposal.",
+  },
+] as const;
+
 export const sharedFoundations = [
   {
     title: "Rhythm",

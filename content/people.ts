@@ -121,9 +121,9 @@ export const athletePathway = [
   },
   {
     step: "02",
-    title: "Build foundations",
+    title: "Build long-term foundations",
     description:
-      "Develop rhythm, movement quality, conditioning and partner communication with a suitably competent coach.",
+      "Develop rhythm, movement quality, conditioning and partner communication progressively with a suitably competent coach.",
     status: "Requires an independent provider",
   },
   {
@@ -135,9 +135,9 @@ export const athletePathway = [
   },
   {
     step: "04",
-    title: "Progress through coached practice",
+    title: "Progress through a coached development cycle",
     description:
-      "Use category-appropriate technical work and, where relevant, carefully supervised acrobatic progression.",
+      "Sequence technical work, feedback, recovery and, where relevant, carefully supervised acrobatic progression without rushing category outcomes.",
     status: "No training programme operates here",
   },
   {
@@ -189,7 +189,7 @@ export const athleteExpectations = [
 export const coachingExpectation = {
   title: "Coaching should make progression legible",
   description:
-    "A future athlete pathway would need coaches who can explain purpose, prerequisites, load, alternatives and stop points. Credentials alone would not replace current competence, suitable supervision or an athlete’s right to ask questions.",
+    "A future athlete pathway would need coaches who can help the athlete and partner understand purpose, prerequisites, load, alternatives, feedback cycles and stop points. Credentials alone would not replace current competence, suitable supervision or an athlete’s right to ask questions.",
 } as const;
 
 export const welfareExpectation = {

@@ -365,6 +365,7 @@ export function StageBackdrop() {
       </div>
       {live && motion.restored ? (
         <button
+          aria-label={motion.paused ? "Play motion" : "Pause motion"}
           className={styles.motionToggle}
           onClick={togglePaused}
           type="button"

@@ -280,6 +280,204 @@
   color: var(--discipline-accent);
 }
 
+.formatSection {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-12) var(--space-6);
+  padding-block: clamp(var(--space-16), 10vw, var(--space-32));
+  scroll-margin-top: var(--space-8);
+}
+
+.formatHeading {
+  grid-column: 1 / span 6;
+}
+
+.formatHeading h2 {
+  max-width: 12ch;
+  color: var(--fg-strong);
+}
+
+.formatHeading p {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--fg-muted);
+  font-size: var(--text-lead);
+}
+
+.formatBody {
+  display: grid;
+  min-width: 0;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: clamp(var(--space-8), 6vw, var(--space-16)) var(--space-6);
+  align-items: end;
+}
+
+.formatMedia {
+  min-width: 0;
+  grid-column: 1 / span 5;
+}
+
+.formatResearch {
+  min-width: 0;
+  grid-column: 7 / -1;
+  padding-block: var(--space-6);
+  border-block: 1px solid var(--hairline-strong);
+}
+
+.researchStatus,
+.scopeStatus,
+.noteReference {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1.45;
+  text-transform: uppercase;
+}
+
+.researchStatus {
+  margin-bottom: var(--space-4);
+  color: var(--accent-brass);
+}
+
+.formatList {
+  margin: 0;
+}
+
+.formatList > div {
+  display: grid;
+  grid-template-columns: minmax(10rem, 0.75fr) minmax(0, 1.25fr);
+  gap: var(--space-6);
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--hairline);
+}
+
+.formatList > div:last-child {
+  padding-bottom: 0;
+}
+
+.formatList dt {
+  color: var(--fg-strong);
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 3vw, 2rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.formatList dd {
+  margin: 0;
+}
+
+.formatList strong {
+  display: block;
+  margin-bottom: var(--space-3);
+  color: var(--accent-count);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.formatList p {
+  margin-bottom: var(--space-3);
+  color: var(--fg);
+}
+
+.formatList p:last-child {
+  margin-bottom: 0;
+  color: var(--fg-muted);
+  font-size: var(--text-small);
+}
+
+.scopeSection {
+  padding-block: clamp(var(--space-16), 9vw, var(--space-24));
+  border-block: 1px solid var(--hairline);
+  background: var(--stage-1);
+  scroll-margin-top: var(--space-8);
+}
+
+.scopeHeading {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: var(--space-8) var(--space-6);
+  align-items: end;
+}
+
+.scopeHeading h2 {
+  max-width: 13ch;
+  grid-column: 1 / span 7;
+  margin-bottom: 0;
+  color: var(--fg-strong);
+}
+
+.scopeHeading > p {
+  max-width: 58ch;
+  grid-column: 8 / -1;
+  margin-bottom: 0;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--accent-balance);
+  color: var(--fg-muted);
+  font-size: var(--text-lead);
+}
+
+.scopeLedger {
+  margin: var(--space-12) 0 0;
+  padding: 0;
+  border-top: 1px solid var(--hairline-strong);
+  list-style: none;
+}
+
+.scopeLedger li {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.7fr) minmax(13rem, 0.8fr) minmax(
+      0,
+      1.5fr
+    );
+  gap: var(--space-6);
+  align-items: start;
+  padding-block: var(--space-6);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.scopeStatus {
+  margin: 0;
+  color: var(--accent-count);
+}
+
+.scopeLedger li[data-scope="exploratory"] .scopeStatus {
+  color: var(--accent-brass);
+}
+
+.scopeLedger h3 {
+  margin-bottom: var(--space-2);
+  color: var(--fg-strong);
+  font-size: clamp(1.375rem, 2.5vw, 2rem);
+}
+
+.noteReference {
+  margin: 0;
+  color: var(--fg-muted);
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+.scopeLedger li > p:last-child {
+  max-width: 62ch;
+  margin: 0;
+  color: var(--fg);
+}
+
+.scopeBoundary {
+  max-width: 72ch;
+  margin: var(--space-8) 0 0 auto;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--accent-brass);
+  color: var(--fg-muted);
+  font-size: var(--text-small);
+}
+
 .foundationsSection,
 .safetySection {
   position: relative;
@@ -475,8 +673,8 @@
   margin: var(--space-8) 0 0;
   padding: var(--space-4) var(--space-6);
   border: 1px solid var(--hairline);
-  border-left: 3px solid var(--accent-step);
-  border-radius: 0 var(--radius-panel) var(--radius-panel) 0;
+  border-top-color: var(--accent-step);
+  border-radius: 0;
   background: var(--glass);
   -webkit-backdrop-filter: var(--glass-blur);
   backdrop-filter: var(--glass-blur);
@@ -643,6 +841,26 @@
     border-bottom: 1px solid var(--hairline);
     border-left: 0;
   }
+
+  .formatHeading,
+  .formatMedia,
+  .formatResearch,
+  .scopeHeading h2,
+  .scopeHeading > p {
+    grid-column: 1 / -1;
+  }
+
+  .formatMedia {
+    max-width: 42rem;
+  }
+
+  .scopeLedger li {
+    grid-template-columns: minmax(9rem, 0.7fr) minmax(0, 1.3fr);
+  }
+
+  .scopeLedger li > p:last-child {
+    grid-column: 2;
+  }
 }
 
 @media (max-width: 38rem) {
@@ -656,7 +874,9 @@
   }
 
   .foundationRail,
-  .sourceList li {
+  .sourceList li,
+  .formatList > div,
+  .scopeLedger li {
     grid-template-columns: 1fr;
   }
 
@@ -667,6 +887,10 @@
   .accessDate {
     width: fit-content;
     white-space: normal;
+  }
+
+  .scopeLedger li > p:last-child {
+    grid-column: auto;
   }
 }
 
@@ -679,6 +903,8 @@
   .safetyCopy,
   .sourceList,
   .sourceBoundary,
+  .formatResearch,
+  .scopeSection,
   .nextStep {
     border: var(--border-strong) solid CanvasText;
     background: Canvas;

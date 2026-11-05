@@ -30,8 +30,8 @@ export default function AthletesPage() {
         <div>
           <PageHeader
             eyebrow="Athletes · Proposed pathway"
-            title="Find a next step without inventing a finish line"
-            description="This page sketches a discovery-to-training-to-competition pathway that could be useful if appropriate providers, welfare controls and verified routes exist."
+            title="Athletes develop through structure, not a label"
+            description="This page sketches a long-term development concept built around foundations, partnership, capable coaching and safe progression. It could be useful only if appropriate providers, welfare controls and verified routes exist."
           />
           <div className="button-row">
             <ButtonLink href="/join/">Express athlete interest</ButtonLink>
@@ -70,12 +70,12 @@ export default function AthletesPage() {
           <div className={styles.sectionHeading}>
             <p className={styles.kicker}>A proposed pathway</p>
             <h2 id="pathway-title">
-              From curiosity to a verified competition route
+              Progress is built over time, not promised at entry
             </h2>
             <p>
-              The sequence describes questions to resolve, not a programme
-              delivered by this initiative. A person may pause, repeat or leave
-              the pathway at any point.
+              The sequence describes a possible development logic and the
+              partnerships needed around it—not a programme delivered by this
+              initiative. A person may pause, repeat or leave at any point.
             </p>
           </div>
           <ol className={styles.pathway}>
@@ -144,7 +144,14 @@ export default function AthletesPage() {
       >
         <div className={styles.sectionHeading}>
           <p className={styles.kicker}>Coaching and welfare</p>
-          <h2 id="support-title">Progress needs people and protections</h2>
+          <h2 id="support-title">
+            Development needs coaching, partnership and protection
+          </h2>
+          <p>
+            A future model would need the athlete, partner, coach and welfare
+            system to progress together. None of those relationships or services
+            is currently provided by this proposal.
+          </p>
         </div>
         <div className={styles.supportGrid}>
           {[coachingExpectation, welfareExpectation].map((expectation) => (

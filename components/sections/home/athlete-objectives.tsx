@@ -11,11 +11,14 @@ export function AthleteObjectives() {
     >
       <header className={styles.objectivesHeading}>
         <p className={styles.eyebrow}>Athlete development</p>
-        <h2 id="objectives-title">Build the conditions before the programme</h2>
+        <h2 id="objectives-title">
+          Create the conditions for athletes to develop
+        </h2>
         <p>
-          Athlete development is an intended area of work. These objectives
-          identify foundations to investigate; they are not a current training,
-          coaching or selection offer.
+          The long-term concept begins with structured progression, capable
+          coaching, workable partnerships and safe development. These are
+          foundations to investigate—not a current training, coaching or
+          selection offer.
         </p>
       </header>
 
